@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: FloorTile
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: -1696596176726589515, guid: 498d6c33c89360e43b56b0934609c613, type: 3}
-  m_DefaultGameObject: {fileID: 7517520564518947985, guid: 08e1214e93798c24893c1552c7e50174, type: 3}
+  m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 0
   m_TilingRules: []
