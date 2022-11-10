@@ -1632,6 +1632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterDrink: {fileID: 11400000, guid: 6725119e4ba28f645bcd39703efebc59, type: 2}
   glassFillImage: {fileID: 655336155}
+  animationSpeed: 3
 --- !u!1 &1166479510
 GameObject:
   m_ObjectHideFlags: 0
