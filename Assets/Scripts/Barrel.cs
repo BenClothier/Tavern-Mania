@@ -3,14 +3,9 @@ using UnityEngine;
 
 public class Barrel : MonoBehaviour
 {
-    public Liquid liquid { get; private set; }
+    public Liquid liquid { get; set; }
 
     public bool ContainsLiquid => true;
-
-    private void Awake()
-    {
-        liquid = Resources.LoadAll<Liquid>("ScriptableObjects")[0];
-    }
 
     public bool TakeMeasurementOfContents(out Liquid liquid)
     {
