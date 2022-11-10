@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float movementSpeed = 1;
+    [SerializeField] private DrinkHeld drinkHeld;
 
     [Header("Interaction")]
     [SerializeField] private KeyCode interactKey = KeyCode.O;
@@ -40,7 +41,28 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.O) && gridController.GetTileGameObject(highlightPos, out GameObject tileObject))
         {
-            print(tileObject.name);
+            if (tileObject.TryGetComponent(out Barrel barrel))
+            {
+                if (barrel.TakeMeasurementOfContents(out Liquid liquid))
+                {
+                    if (drinkHeld.AddToDrink(liquid))
+                    {
+                        Debug.Log($"{liquid.Name} added to glass.");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Could not add liquid to glass.");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("Could not take barrel contents.");
+                }
+            }
+            else
+            {
+                Debug.LogError("Could not recognise object type!");
+            }
         }
     }
 }

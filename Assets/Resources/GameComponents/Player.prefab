@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 5
+  drinkHeld: {fileID: 11400000, guid: 6725119e4ba28f645bcd39703efebc59, type: 2}
+  interactKey: 111
 --- !u!212 &3961329736492728143
 SpriteRenderer:
   m_ObjectHideFlags: 0
