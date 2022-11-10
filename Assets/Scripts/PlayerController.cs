@@ -38,9 +38,8 @@ public class PlayerController : MonoBehaviour
 
         Debug.DrawRay(transform.position, normMovement, Color.green);
 
-        if (Input.GetKeyDown(KeyCode.O) && normMovement != Vector2.zero)
+        if (Input.GetKeyDown(KeyCode.O) && gridController.GetTileGameObject(highlightPos, out GameObject tileObject))
         {
-            gridController.GetTileGameObject(highlightPos, out GameObject tileObject);
             print(tileObject.name);
         }
     }
