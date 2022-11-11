@@ -9,13 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4972992395073375478}
-  - component: {fileID: -4645091240969090630}
   - component: {fileID: 3961329736492728143}
   - component: {fileID: 7178341152248124702}
   - component: {fileID: 5167250604638555580}
   - component: {fileID: -3815934920787377981}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Customer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,21 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4645091240969090630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5650234666475818652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 248e8124a9a1af34b9e6f0dafac96178, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 5
-  drinkHeld: {fileID: 11400000, guid: 6725119e4ba28f645bcd39703efebc59, type: 2}
-  interactKey: 111
 --- !u!212 &3961329736492728143
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -92,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -1621112638, guid: 0fbf790acf9eaab48b852520102077ec, type: 3}
+  m_Sprite: {fileID: 1077247728, guid: 0fbf790acf9eaab48b852520102077ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -150,7 +134,7 @@ Animator:
   m_GameObject: {fileID: 5650234666475818652}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2a8f61090c271f34585b2a68aa3d104e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 81bd6ac4d82766c4e92b76d36bda0f2d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
