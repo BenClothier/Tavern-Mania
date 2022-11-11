@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd0327f1213a5d848a594104779d1f6d, type: 3}
-  m_Name: Level_1_Settings
+  m_Script: {fileID: 11500000, guid: 822dbac7b41c0934aa5a7cf434df7e9b, type: 3}
+  m_Name: Water
   m_EditorClassIdentifier: 
-  liquidsAvailable:
-  - {fileID: 11400000, guid: e4b3613329a1fe749a68f26671b032f8, type: 2}
-  - {fileID: 11400000, guid: 6071a74a734a150489e6ed8b5cd17011, type: 2}
+  Name: Water
+  colour: {r: 1, g: 1, b: 1, a: 0.85882354}

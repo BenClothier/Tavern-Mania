@@ -16,7 +16,10 @@ public class Barrel : MonoBehaviour
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        Handles.Label(transform.position, liquid.Name);
+        if (liquid != null)
+        {
+            Handles.Label(transform.position, liquid.Name);
+        }
     }
 #endif
 }
