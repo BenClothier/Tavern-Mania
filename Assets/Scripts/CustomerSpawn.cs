@@ -11,7 +11,6 @@ public class CustomerSpawn : MonoBehaviour
 
     void Start() // change to OnGameStart listener
     {
-        SpawnCustomer();
         numberOfCustomers = 0;
     }
 
