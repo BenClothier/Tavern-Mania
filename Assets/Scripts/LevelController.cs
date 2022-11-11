@@ -12,7 +12,7 @@ public class LevelController : MonoBehaviour
 
         for (int i = 0; i < barrels.Length; i++)
         {
-            barrels[i].liquid = levelSettings.liquidsAvailable[i];
+            barrels[i].Liquid = levelSettings.liquidsAvailable[i];
         }
     }
 }

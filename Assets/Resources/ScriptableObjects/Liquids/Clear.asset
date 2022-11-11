@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Clear
   m_EditorClassIdentifier: 
   Name: Clear
-  colour: {r: 0.797508, g: 0.8679245, b: 0.85237175, a: 0.654902}
+  colour: {r: 0.797508, g: 0.8679245, b: 0.85237175, a: 1}
+  symbol: {fileID: -1467910239, guid: e387ecd29ec077f4eb5240cb19b29107, type: 3}

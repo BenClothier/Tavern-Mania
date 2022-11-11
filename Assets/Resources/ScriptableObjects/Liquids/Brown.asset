@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Brown
   colour: {r: 0.3773585, g: 0.25845695, b: 0.08330365, a: 1}
+  symbol: {fileID: -1877212823, guid: e387ecd29ec077f4eb5240cb19b29107, type: 3}

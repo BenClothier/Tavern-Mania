@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Cola
   colour: {r: 0.1981132, g: 0.124173366, b: 0.038127437, a: 1}
+  symbol: {fileID: 1754160558, guid: e387ecd29ec077f4eb5240cb19b29107, type: 3}

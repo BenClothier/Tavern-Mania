@@ -5,4 +5,5 @@ public class Liquid : ScriptableObject
 {
     public string Name;
     public Color colour;
+    public Sprite symbol;
 }

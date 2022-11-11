@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Wheat
   m_EditorClassIdentifier: 
   Name: Wheat
-  colour: {r: 0.9150943, g: 0.6835089, b: 0.12431464, a: 0.85882354}
+  colour: {r: 0.9150943, g: 0.6835089, b: 0.12431464, a: 1}
+  symbol: {fileID: 1340034871, guid: e387ecd29ec077f4eb5240cb19b29107, type: 3}

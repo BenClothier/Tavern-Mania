@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Lemon
   m_EditorClassIdentifier: 
   Name: Lemon
-  colour: {r: 1, g: 0.9689393, b: 0.80566037, a: 0.8392157}
+  colour: {r: 1, g: 0.9689393, b: 0.80566037, a: 1}
+  symbol: {fileID: -898861793, guid: e387ecd29ec077f4eb5240cb19b29107, type: 3}
