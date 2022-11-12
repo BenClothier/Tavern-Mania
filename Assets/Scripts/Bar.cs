@@ -1,38 +1,54 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Bar : MonoBehaviour
 {
+    public bool IsVacant { get; private set; } = true;
 
-    public bool IsVacant { get; private set; }
+    public DrinkMix? Order { get; private set; }
+
+    public event Action<DrinkMix> OrderSatisfied;
+
+    #region Player
+
+    public bool ServeDrink(DrinkMix mix)
+    {
+        if (Order.HasValue && Order.Value.CompareDrink(mix))
+        {
+            OrderSatisfied?.Invoke(Order.Value);
+            Order = null;
+            return true;
+        }
+
+        return false;
+    }
+
+    #endregion
+
+    #region Customer
 
     public bool TakeVacancy()
     {
-        if (IsVacant = true)
+        if (IsVacant == true)
         {
             IsVacant = false;
             return true;
-        } else
+        } 
+        else
         {
             return false;
         }
     }
 
-    public void Leave()
+    public void LeaveBar()
     {
         IsVacant = true;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void PlaceOrder(DrinkMix order)
     {
-        IsVacant = true;
+        Order = order;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    #endregion
 }

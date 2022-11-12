@@ -59,6 +59,17 @@ public class PlayerController : MonoBehaviour
                     Debug.LogWarning("Could not take barrel contents.");
                 }
             }
+            else if (tileObject.TryGetComponent(out Bar bar))
+            {
+                if (bar.ServeDrink(drinkHeld.DrinkMix))
+                {
+                    drinkHeld.EmptyGlass();
+                }
+                else
+                {
+                    Debug.LogWarning("Could not serve held drink.");
+                }
+            }
             else
             {
                 Debug.LogError("Could not recognise object type!");

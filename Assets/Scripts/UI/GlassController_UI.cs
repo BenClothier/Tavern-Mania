@@ -19,17 +19,17 @@ public class GlassController_UI : MonoBehaviour
         characterDrink.OnDrinkModified += OnDrinkModified;
     }
 
-    private void OnDrinkModified(List<Liquid> liquids)
+    private void OnDrinkModified(DrinkMix mix)
     {
         Debug.Log("Updating glass UI.");
 
-        targetFillAmount = (float)liquids.Count / 3;
-        targetColour = liquids.Aggregate(Color.black, (col, liq) => col + liq.colour) / liquids.Count;
+        targetFillAmount = (float)mix.LiquidCount / 3;
+        targetColour = mix.Liquids.Aggregate(Color.black, (col, liq) => col + liq.colour) / mix.LiquidCount;
 
         // If first liquid to be added, just take it's colour
-        if (liquids.Count == 1)
+        if (mix.LiquidCount == 1)
         {
-            glassFillImage.color = liquids[0].colour;
+            glassFillImage.color = mix.Liquids[0].colour;
         }
     }
 
