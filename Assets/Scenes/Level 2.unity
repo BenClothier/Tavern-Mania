@@ -196,6 +196,8 @@ GameObject:
   - component: {fileID: 374589705}
   - component: {fileID: 374589704}
   - component: {fileID: 374589706}
+  - component: {fileID: 374589708}
+  - component: {fileID: 374589707}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -250,6 +252,74 @@ MonoBehaviour:
   objectTilemap: {fileID: 1585405057}
   overlayTileMap: {fileID: 1826983689}
   highlightTile: {fileID: 11400000, guid: 8161b539bfe185840920669550640908, type: 2}
+--- !u!114 &374589707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374589703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 632ae7eb1d4ce49d38a1e38ee7efe7c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid: 9ca0349d55d03ccb-db1099295ae58b10
+--- !u!114 &374589708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374589703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78396926cbbfc4ac3b48fc5fc34a87d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  data:
+    dataString: UEsDBBQAAAgIAAAAIezjf54laQIAACEFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMziVj853eWkNID0mYkE4uvghpjTXIkkeSAyTDf+9KtrFLpyfE27e7b59W/iJC2RKY02ZtBH/SHMj3AfFn8m3QBR/hRPdabcUntJx3wV3uSTRwXqkTGvHYp1ldgDOC/VB76ckRgpUSmTbFiu8h0dZZhDMqLWDIaOezFUJfA3LCn+G9TznjaTT3p0883UeDCx4ZKAemo16Jd9OGWPMqxSQtSuBedEePW/40sBRO0xC8cqalFLaRQty5DKMmtLQVDoIELiiOFvpHd2MEchD73Pn+/fSXLLPgGnWGnpfCoEd1XfJT18YV1B5qYR9UVr7TMA6i6ppP/wtnRhePbds48i1cLtjhlZ4Zta5nbB9edsrjYM+RygPdSXjPQT3rtdGV4hh0pvKplYXRsvt7nSzJgR06vJZ6A1blv9cT380Xi3h8PxuvhtG8uSk/0CU4cUqkKHbB1UkNbKUO7odNAIP39AvVhz2xTV1EvaTfFt7ovr9QTeBBGOsw1IysvNadroynklUw0I9WuUQbBQFuJihBUenOGyzjbq/zJtZrexN5oP7pNM2bWPsiblIC3PGj6Ca00cfrzdlcH5/A5i+Vk0JBJ9oHntGnRCtVb1vfkzZtW5mMsl7avhL87z0ju9ksno7iCYsn02zBx8PZYj7jQBcRY2Mej0ckLKJQOCeVm1poYw/emuqKK1y69osyWBtahs3nhh7X4rPQPcuFyvSWGQD1Ule4CgeDTfCN8hUXaNAWnBMq3Df5SonU7AA8vRZKw6SrkzM07aqkpBQf2nkkJUn4hKTEw9fF3hj4EHD0zdtiF3L5A1BLAwQUAAAICAAAACHsk5wyWm0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0UpKZmaGpkaFJsqGJaZpFirGumYW5WUpqooVBcrJxiqGxkVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAACHs43+eJWkCAAAhBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAACHsk5wyWm0AAAB4AAAACQAkAAAAAAAAAAAAAAC2AgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAG4DAAAAAA==
+    upgradeData: 
+    file_cachedStartup: {fileID: 4900000, guid: 5955b32356e50984b96dd452edbd6186, type: 3}
+    data_cachedStartup: 
+    cacheStartup: 1
+  showNavGraphs: 1
+  showUnwalkableNodes: 1
+  debugMode: 0
+  debugFloor: 0
+  debugRoof: 1
+  manualDebugFloorRoof: 0
+  showSearchTree: 0
+  unwalkableNodeDebugSize: 0.3
+  logPathResults: 1
+  maxNearestNodeDistance: 100
+  scanOnStartup: 1
+  fullGetNearestSearch: 0
+  prioritizeGraphs: 0
+  prioritizeGraphsLimit: 1
+  colorSettings:
+    _SolidColor: {r: 0.11764706, g: 0.4, b: 0.7882353, a: 0.9}
+    _UnwalkableNode: {r: 1, g: 0, b: 0, a: 0.5}
+    _BoundsHandles: {r: 0.29, g: 0.454, b: 0.741, a: 0.9}
+    _ConnectionLowLerp: {r: 0, g: 1, b: 0, a: 0.5}
+    _ConnectionHighLerp: {r: 1, g: 0, b: 0, a: 0.5}
+    _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
+    _AreaColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+  tagNames: []
+  heuristic: 2
+  heuristicScale: 1
+  threadCount: 1
+  maxFrameTime: 10
+  batchGraphUpdates: 0
+  graphUpdateBatchingInterval: 0.2
+  euclideanEmbedding:
+    mode: 0
+    seed: 0
+    pivotPointRoot: {fileID: 0}
+    spreadOutCount: 1
+  showGraphs: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,7 +563,7 @@ GameObject:
   - component: {fileID: 640410214}
   m_Layer: 0
   m_Name: FloorAndWalls
-  m_TagString: Untagged
+  m_TagString: Walkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

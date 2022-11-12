@@ -9,6 +9,8 @@ public class Bar : MonoBehaviour
 
     public event Action<DrinkMix> OrderSatisfied;
 
+    public event Action<Bar> BarBecameVacant;
+
     #region Player
 
     public bool ServeDrink(DrinkMix mix)
@@ -43,6 +45,7 @@ public class Bar : MonoBehaviour
     public void LeaveBar()
     {
         IsVacant = true;
+        BarBecameVacant?.Invoke(this);
     }
 
     public void PlaceOrder(DrinkMix order)
