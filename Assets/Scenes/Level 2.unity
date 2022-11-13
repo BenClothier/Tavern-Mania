@@ -3100,6 +3100,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 640410211}
     m_Modifications:
+    - target: {fileID: -5973718326494897604, guid: f842e8a9346040d49ba52c3198f984c4, type: 3}
+      propertyPath: maxCustomers
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 7517520564518947985, guid: f842e8a9346040d49ba52c3198f984c4, type: 3}
       propertyPath: m_Name
       value: CustomerSpawn

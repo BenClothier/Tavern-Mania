@@ -25,5 +25,6 @@ public class DrinkHeld : ScriptableObject
     public void EmptyGlass()
     {
         DrinkMix.Clear();
+        OnDrinkModified?.Invoke(DrinkMix);
     }
 }

@@ -15,18 +15,24 @@ public struct DrinkMix
     public DrinkMix(params Liquid[] liquids)
     {
         Liquids = new List<Liquid>(liquids);
-        Liquids.OrderBy(x => x.ID);
+        Liquids = Liquids.OrderBy(x => x.ID).ToList();
+    }
+
+    public DrinkMix(List<Liquid> liquids)
+    {
+        Liquids = liquids;
+        Liquids = Liquids.OrderBy(x => x.ID).ToList();
     }
 
     public void AddLiquid(Liquid liquid)
     {
         Liquids.Add(liquid);
-        Liquids.OrderBy(x => x.ID);
+        Liquids = Liquids.OrderBy(x => x.ID).ToList();
     }
 
-    public bool CompareDrink(DrinkMix other)
+    public bool Equals(DrinkMix other)
     {
-        return Liquids.Equals(other.Liquids);
+        return Liquids.SequenceEqual(other.Liquids);
     }
 
     public void Clear()

@@ -30,6 +30,5 @@ public class CustomerSpawn : MonoBehaviour
     {
         Instantiate(customerPrefab, transform.position, Quaternion.identity);
         nextSpawnTime = spawnRate.Evaluate(Time.time) + Time.time;
-        Debug.Log(Time.time);
     }
 }

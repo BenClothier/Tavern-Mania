@@ -5,6 +5,7 @@ using System.Collections.Generic;
 namespace Pathfinding {
 	using Pathfinding.RVO;
 	using Pathfinding.Util;
+	using System;
 
 	/// <summary>
 	/// AI for following paths.
@@ -260,6 +261,13 @@ namespace Pathfinding {
 			reachedEndOfPath = false;
 		}
 
+		public event Action OnTargetReachedEvent;
+
+		public void ClearOnTargetReachedListener()
+		{
+			OnTargetReachedEvent = null;
+		}
+
 		/// <summary>
 		/// The end of the path has been reached.
 		/// If you want custom logic for when the AI has reached it's destination add it here. You can
@@ -269,7 +277,9 @@ namespace Pathfinding {
 		/// So when the agent is close to the destination this method will typically be called every <see cref="repathRate"/> seconds.
 		/// </summary>
 		public virtual void OnTargetReached () {
-		}
+			OnTargetReachedEvent?.Invoke();
+
+        }
 
 		/// <summary>
 		/// Called when a requested path has been calculated.

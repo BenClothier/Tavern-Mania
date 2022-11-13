@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -14,5 +15,18 @@ public class LevelController : MonoBehaviour
         {
             barrels[i].Liquid = levelSettings.liquidsAvailable[i];
         }
+    }
+
+    public DrinkMix GenerateOrder(Customer customer)
+    {
+        List<Liquid> liquids = new ();
+        int liquidCount = UnityEngine.Random.Range(1, 4);
+
+        for (int i = 0; i < liquidCount; i++)
+        {
+            liquids.Add(levelSettings.liquidsAvailable[UnityEngine.Random.Range(0, levelSettings.liquidsAvailable.Count)]);
+        }
+
+        return new DrinkMix(liquids);
     }
 }
