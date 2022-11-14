@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour
 
     [Header("Interaction")]
     [SerializeField] private KeyCode interactKey = KeyCode.O;
+    [SerializeField] private KeyCode discardDrinkKey = KeyCode.P;
+
+    [Header("Effects")]
+    [SerializeField] private ParticleSystem throwGlassEffect;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -74,6 +78,11 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.LogError("Could not recognise object type!");
             }
+        }
+        else if (Input.GetKeyDown(discardDrinkKey))
+        {
+            drinkHeld.EmptyGlass();
+            throwGlassEffect.Play();
         }
     }
 }
