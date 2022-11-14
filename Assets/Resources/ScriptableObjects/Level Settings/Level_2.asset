@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Level_2
   m_EditorClassIdentifier: 
   liquidsAvailable:
-  - {fileID: 11400000, guid: caba38f6b163ebf4b834514f84d368cf, type: 2}
-  - {fileID: 11400000, guid: e4b3613329a1fe749a68f26671b032f8, type: 2}
+  - {fileID: 11400000, guid: 72370929e46f1234988a1edef1d931b8, type: 2}
+  - {fileID: 11400000, guid: 6d84af076a3b85047bab052349f58da4, type: 2}
