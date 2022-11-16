@@ -1993,7 +1993,7 @@ GameObject:
   - component: {fileID: 4382874459702486195}
   - component: {fileID: 4382874459702486194}
   - component: {fileID: 4382874459702486192}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -8,12 +8,15 @@ public class Bar : MonoBehaviour
     [SerializeField] private GameObject orderDisplay1Prefab;
     [SerializeField] private GameObject orderDisplay2Prefab;
     [SerializeField] private GameObject orderDisplay3Prefab;
+    [Space]
+    [SerializeField] private EventChannel_Void onOrderSatisfied;
+    [SerializeField] private EventChannel_Void onOrderFailed;
 
     public bool IsVacant { get; private set; } = true;
 
     public DrinkMix? Order { get; private set; }
 
-    public event Action<DrinkMix> OrderSatisfied;
+    public event Action<DrinkMix> ThisOrderSatisfied;
 
     private GameObject currentOrderDisplay;
     private Queue<Customer> customerQueue = new Queue<Customer>();
@@ -50,10 +53,31 @@ public class Bar : MonoBehaviour
         }
     }
 
+    public void PlaceOrder(DrinkMix order)
+    {
+        Debug.Log("Order Placed!");
+        Order = order;
+        DisplayOrder(order);
+    }
+
+    public void FailOrder()
+    {
+        onOrderFailed.Invoke();
+        RemoveOrder();
+    }
+
     private void OnOrderSatisfied()
     {
-        OrderSatisfied?.Invoke(Order.Value);
-        OrderSatisfied = null;
+        ThisOrderSatisfied?.Invoke(Order.Value);
+        ThisOrderSatisfied = null;
+
+        onOrderSatisfied.Invoke();
+
+        RemoveOrder();
+    }
+
+    private void RemoveOrder()
+    {
         Order = null;
 
         IsVacant = true;
@@ -67,13 +91,6 @@ public class Bar : MonoBehaviour
             customer.InviteToBar(this);
             IsVacant = false;
         }
-    }
-
-    public void PlaceOrder(DrinkMix order)
-    {
-        Debug.Log("Order Placed!");
-        Order = order;
-        DisplayOrder(order);
     }
 
     #endregion
