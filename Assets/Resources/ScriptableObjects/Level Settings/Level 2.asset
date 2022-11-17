@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquidsAvailable:
   - {fileID: 11400000, guid: 6d84af076a3b85047bab052349f58da4, type: 2}
+  maxSingleOrders: 10
+  maxDoubleOrders: 20
+  maxTripleOrders: 10
   customerCount: 25
   customerSpawnPeriodCurve:
     serializedVersion: 2
@@ -48,4 +51,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  patienceMultiplier: 1
+  patienceMultiplier: 1.2
