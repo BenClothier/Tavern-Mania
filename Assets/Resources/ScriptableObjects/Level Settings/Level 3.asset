@@ -52,4 +52,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  patienceMultiplier: 1.5
+  patienceDropMultiplier: 0.6

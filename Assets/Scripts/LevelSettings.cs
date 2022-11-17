@@ -13,5 +13,5 @@ public class LevelSettings : ScriptableObject
     [Header("Customers")]
     public int customerCount;
     public AnimationCurve customerSpawnPeriodCurve;
-    public float patienceMultiplier = 1;
+    public float patienceDropMultiplier = 1;
 }

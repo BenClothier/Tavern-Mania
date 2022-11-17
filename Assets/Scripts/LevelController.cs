@@ -37,7 +37,7 @@ public class LevelController : MonoBehaviour
 
         customerSpawn = FindObjectOfType<CustomerSpawn>();
         customersRemaining = levelSettings.customerCount;
-        patienceDropMultiplierVar.Value = levelSettings.patienceMultiplier;
+        patienceDropMultiplierVar.Value = levelSettings.patienceDropMultiplier;
 
         StartCoroutine(SpawnCustomerRoutine());
     }
