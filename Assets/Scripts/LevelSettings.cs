@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,4 +5,9 @@ using UnityEngine;
 public class LevelSettings : ScriptableObject
 {
     public List<Liquid> liquidsAvailable;
+
+    [Header("Customers")]
+    public int customerCount;
+    public AnimationCurve customerSpawnPeriodCurve;
+    public float patienceMultiplier = 1;
 }

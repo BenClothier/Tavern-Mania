@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -5,6 +6,12 @@ using UnityEngine.Assertions;
 public class LevelController : MonoBehaviour
 {
     [SerializeField] private LevelSettings levelSettings;
+    [SerializeField] private FloatVariable patienceDropMultiplierVar;
+
+    private int customersRemaining;
+    private CustomerSpawn customerSpawn;
+
+    public bool GameOver { get; private set; }
 
     private void Awake()
     {
@@ -15,6 +22,12 @@ public class LevelController : MonoBehaviour
         {
             barrels[i].Liquid = levelSettings.liquidsAvailable[i];
         }
+
+        customerSpawn = FindObjectOfType<CustomerSpawn>();
+        customersRemaining = levelSettings.customerCount;
+        patienceDropMultiplierVar.Value = levelSettings.patienceMultiplier;
+
+        StartCoroutine(SpawnCustomerRoutine());
     }
 
     public DrinkMix GenerateOrder(Customer customer)
@@ -28,5 +41,18 @@ public class LevelController : MonoBehaviour
         }
 
         return new DrinkMix(liquids);
+    }
+
+    private IEnumerator SpawnCustomerRoutine()
+    {
+        while (!GameOver)
+        {
+            if (customersRemaining > 0)
+            {
+                yield return new WaitForSeconds(levelSettings.customerSpawnPeriodCurve.Evaluate(1 - ((float)customersRemaining / levelSettings.customerCount)));
+                customerSpawn.SpawnCustomer();
+                customersRemaining--;
+            }
+        }
     }
 }
