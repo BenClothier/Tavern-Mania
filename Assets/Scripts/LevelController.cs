@@ -45,14 +45,11 @@ public class LevelController : MonoBehaviour
 
     private IEnumerator SpawnCustomerRoutine()
     {
-        while (!GameOver)
+        while (!GameOver && customersRemaining > 0)
         {
-            if (customersRemaining > 0)
-            {
-                yield return new WaitForSeconds(levelSettings.customerSpawnPeriodCurve.Evaluate(1 - ((float)customersRemaining / levelSettings.customerCount)));
-                customerSpawn.SpawnCustomer();
-                customersRemaining--;
-            }
+            yield return new WaitForSeconds(levelSettings.customerSpawnPeriodCurve.Evaluate(1 - ((float)customersRemaining / levelSettings.customerCount)));
+            customerSpawn.SpawnCustomer();
+            customersRemaining--;
         }
     }
 }
