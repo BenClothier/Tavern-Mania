@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
@@ -9,14 +8,23 @@ public class GlassController_UI : MonoBehaviour
     [SerializeField] private Image glassFillImage;
     [SerializeField] private float animationSpeed;
 
+    [SerializeField] private EventChannel_GameOverInfo onGameOver;
+
     private float targetFillAmount;
     private Color targetColour;
 
-    private void Awake()
+    private void OnEnable()
     {
         glassFillImage.fillAmount = 0;
         glassFillImage.color = Color.clear;
         characterDrink.OnDrinkModified += OnDrinkModified;
+        onGameOver.OnEventInvocation += OnGameOver;
+    }
+
+    private void OnDisable()
+    {
+        characterDrink.OnDrinkModified -= OnDrinkModified;
+        onGameOver.OnEventInvocation -= OnGameOver;
     }
 
     private void OnDrinkModified(DrinkMix mix)
@@ -31,6 +39,11 @@ public class GlassController_UI : MonoBehaviour
         {
             glassFillImage.color = mix.Liquids[0].colour;
         }
+    }
+
+    private void OnGameOver(GameOverInfo info)
+    {
+        gameObject.SetActive(false);
     }
 
     private void Update()
