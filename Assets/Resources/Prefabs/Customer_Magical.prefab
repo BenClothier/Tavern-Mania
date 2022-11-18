@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4972992395073375478}
-  - component: {fileID: 5389157951977115387}
+  - component: {fileID: 4903709896556344013}
   - component: {fileID: 3961329736492728143}
   - component: {fileID: -3579286451128466187}
   - component: {fileID: 7178341152248124702}
@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6445112531245385521}
   - component: {fileID: -5505617004604975925}
   m_Layer: 0
-  m_Name: Customer
+  m_Name: Customer_Magical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +38,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5389157951977115387
+--- !u!114 &4903709896556344013
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,11 +47,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5650234666475818652}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee76c64a3f614b44a9b7cbff1c86d464, type: 3}
+  m_Script: {fileID: 11500000, guid: a1578d8973b24594b9fe01eaf0338931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPatience: 20
-  maxPatience: 20
+  activeAI: 1
+  startPatience: 25
+  maxPatience: 25
   patienceDropMultiplier: {fileID: 11400000, guid: 74e0c91f58025174c80f39f96ec7a109, type: 2}
   patienceProportionToAnger:
     serializedVersion: 2
@@ -87,6 +88,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   angerReturnTime: 1.5
+  patienceCalmerPrefab: {fileID: 1446315202469450967, guid: 91da054fdfd2f92428d4ee50a99dd469, type: 3}
 --- !u!212 &3961329736492728143
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -128,7 +130,7 @@ SpriteRenderer:
   m_SortingLayerID: 1402851719
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1077247728, guid: 0fbf790acf9eaab48b852520102077ec, type: 3}
+  m_Sprite: {fileID: 291992672, guid: 0fbf790acf9eaab48b852520102077ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -186,7 +188,7 @@ Animator:
   m_GameObject: {fileID: 5650234666475818652}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 81bd6ac4d82766c4e92b76d36bda0f2d, type: 2}
+  m_Controller: {fileID: 9100000, guid: ccc2b672d8134634989bb3d69b326e2d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

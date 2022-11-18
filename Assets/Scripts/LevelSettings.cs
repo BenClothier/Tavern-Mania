@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LevelSettings", menuName = "Game/Level Settings")]
 public class LevelSettings : ScriptableObject
 {
+    public int TotalCustomersThisLevel => customerCount + magicCustomerCount;
+
     [Header("Orders")]
     public List<Liquid> liquidsAvailable;
     public int maxSingleOrders;
@@ -12,6 +14,11 @@ public class LevelSettings : ScriptableObject
 
     [Header("Customers")]
     public int customerCount;
+    public int magicCustomerCount;
     public AnimationCurve customerSpawnPeriodCurve;
+
+    [Header("Patience")]
     public float patienceDropMultiplier = 1;
+    public float patienceCalmerPatienceDropMultiplier = -0.2f;
+    public float patienceCalmerDuration = 8;
 }
