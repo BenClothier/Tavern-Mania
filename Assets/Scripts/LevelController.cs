@@ -7,6 +7,7 @@ using UnityEngine.Assertions;
 public class LevelController : MonoBehaviour
 {
     [SerializeField] private LevelSettings levelSettings;
+    [SerializeField] private DrinkHeld drinkHeld;
     [SerializeField] private FloatVariable patienceDropMultiplierVar;
 
     Stack<int> orderStack;
@@ -26,6 +27,8 @@ public class LevelController : MonoBehaviour
 
     private void Awake()
     {
+        drinkHeld.EmptyGlass();
+
         Barrel[] barrels = FindObjectsOfType<Barrel>();
 
         Assert.IsTrue(barrels.Length == levelSettings.liquidsAvailable.Count, "Barrel count does not match liquid count!!");
