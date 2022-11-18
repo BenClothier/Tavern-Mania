@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PatienceCalmer : MonoBehaviour
@@ -9,16 +10,21 @@ public class PatienceCalmer : MonoBehaviour
     private void OnEnable()
     {
         lvlSettings = FindObjectOfType<LevelController>().LevelSettings;
-        patienceDropMultiplier.Value = lvlSettings.patienceCalmerPatienceDropMultiplier;
-        Destroy(gameObject, lvlSettings.patienceCalmerDuration);
+        StartCoroutine(ActivateAfterDelay());
     }
 
     private void OnDisable()
     {
-        Debug.Log("Calmers:" + FindObjectsOfType<PatienceCalmer>().Length);
         if (FindObjectsOfType<PatienceCalmer>().Length <= 1)
         {
             patienceDropMultiplier.Value = lvlSettings.patienceDropMultiplier;
         }
+    }
+
+    private IEnumerator ActivateAfterDelay()
+    {
+        yield return new WaitForSeconds(lvlSettings.patienceCalmerDelay);
+        patienceDropMultiplier.Value = lvlSettings.patienceCalmerPatienceDropMultiplier;
+        Destroy(gameObject, lvlSettings.patienceCalmerDuration);
     }
 }
