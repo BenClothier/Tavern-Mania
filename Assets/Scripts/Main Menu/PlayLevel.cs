@@ -2,9 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayLevel : MonoBehaviour
 {
+
+    [SerializeField] public TMP_Text difficulty;
+
+    public void DifficultyIncrease()
+    {
+        if (difficulty.text == "Easy")
+        {
+            difficulty.text = "Medium";
+        }
+        else if (difficulty.text == "Medium")
+        {
+            difficulty.text = "Hard";
+        }
+        else if (difficulty.text == "Hard")
+        {
+            difficulty.text = "Easy";
+        }
+    }
+
+    public void DifficultyDecrease()
+    {
+        if (difficulty.text == "Easy")
+        {
+            difficulty.text = "Hard";
+        }
+        else if (difficulty.text == "Medium")
+        {
+            difficulty.text = "Easy";
+        }
+        else if (difficulty.text == "Hard")
+        {
+            difficulty.text = "Medium";
+        }
+    }
+
+
     public void GoBack()
     {
         SceneManager.LoadScene(sceneName: "Main Menu");
