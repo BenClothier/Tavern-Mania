@@ -45,4 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelSettings: {fileID: 0}
+  drinkHeld: {fileID: 11400000, guid: 6725119e4ba28f645bcd39703efebc59, type: 2}
   patienceDropMultiplierVar: {fileID: 11400000, guid: 74e0c91f58025174c80f39f96ec7a109, type: 2}
+  onOrderFailed: {fileID: 11400000, guid: d7e23e3a0fde0a1418f48fa82be6b7bd, type: 2}
+  onGameOver: {fileID: 11400000, guid: 4cc3e9cb3319647479c0fb39a2123313, type: 2}
+  livesPerLevel: {fileID: 11400000, guid: 7a377676a4fdd124c98185a75a43fc9e, type: 2}

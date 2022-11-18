@@ -63,6 +63,7 @@ public class Customer : MonoBehaviour
         animator.SetFloat("Horizontal", navigation.velocity.x);
         animator.SetFloat("Vertical", navigation.velocity.y);
         sr.material.SetFloat("_Anger", patienceProportionToAnger.Evaluate(currentPatience / maxPatience));
+        sr.material.SetFloat("_UnscaledTime", Time.unscaledTime);
     }
 
     public void EnableAI()
@@ -192,6 +193,12 @@ public class Customer : MonoBehaviour
 
             CurrentState = CustomerState.Leaving;
             bar.FailOrder();
+
+            if (levelController.GameOver)
+            {
+                sr.material.SetInt("_UseUnscaledTime", 1);
+            }
+
             Leave();
         }
         else

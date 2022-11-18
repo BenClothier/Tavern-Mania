@@ -9,11 +9,18 @@ public class LevelController : MonoBehaviour
     [SerializeField] private LevelSettings levelSettings;
     [SerializeField] private DrinkHeld drinkHeld;
     [SerializeField] private FloatVariable patienceDropMultiplierVar;
+    [SerializeField] private EventChannel_Void onOrderFailed;
+    [SerializeField] private EventChannel_Void onGameOver;
 
-    Stack<int> orderStack;
-    Stack<CustomerType> customerStack;
+    [Header("Game-wide Variables")]
+    [SerializeField] private IntVariable livesPerLevel;
 
     private CustomerSpawn customerSpawn;
+
+    private Stack<int> orderStack;
+    private Stack<CustomerType> customerStack;
+
+    private int livesRemaining;
 
     private enum CustomerType
     {
@@ -27,8 +34,15 @@ public class LevelController : MonoBehaviour
 
     private void Awake()
     {
+        var rnd = new System.Random();
+
+        // Reset game variables for level
         drinkHeld.EmptyGlass();
 
+        // Initialise listeners
+        onOrderFailed.OnEventInvocation += LoseLife;
+
+        // Initalise barrels with liquid
         Barrel[] barrels = FindObjectsOfType<Barrel>();
 
         Assert.IsTrue(barrels.Length == levelSettings.liquidsAvailable.Count, "Barrel count does not match liquid count!!");
@@ -38,8 +52,6 @@ public class LevelController : MonoBehaviour
         {
             barrels[i].Liquid = levelSettings.liquidsAvailable[i];
         }
-
-        var rnd = new System.Random();
 
         // Pre-generate sequence of orders
         List<int> orders = new List<int>();
@@ -57,6 +69,9 @@ public class LevelController : MonoBehaviour
         customerSpawn = FindObjectOfType<CustomerSpawn>();
         patienceDropMultiplierVar.Value = levelSettings.patienceDropMultiplier;
 
+        // Set local variables
+        livesRemaining = livesPerLevel.Value;
+
         StartCoroutine(SpawnCustomerRoutine());
     }
 
@@ -71,6 +86,18 @@ public class LevelController : MonoBehaviour
         }
 
         return new DrinkMix(liquids);
+    }
+
+    private void LoseLife()
+    {
+        livesRemaining--;
+
+        if (livesRemaining < 1)
+        {
+            GameOver = true;
+            onGameOver.Invoke();
+            Time.timeScale = 0;
+        }
     }
 
     private IEnumerator SpawnCustomerRoutine()
