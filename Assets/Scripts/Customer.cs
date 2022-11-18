@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
-    [SerializeField] bool activeAI = true;
+    [SerializeField] private bool activeAI = true;
+    [SerializeField] private EventChannel_Void onCustomerLeave;
 
     [Header("Patience")]
     [SerializeField] private float startPatience;
@@ -63,6 +64,7 @@ public class Customer : MonoBehaviour
         animator.SetFloat("Horizontal", navigation.velocity.x);
         animator.SetFloat("Vertical", navigation.velocity.y);
         sr.material.SetFloat("_Anger", patienceProportionToAnger.Evaluate(currentPatience / maxPatience));
+        sr.material.SetFloat("_UnscaledTime", Time.unscaledTime);
     }
 
     public void EnableAI()
@@ -192,6 +194,12 @@ public class Customer : MonoBehaviour
 
             CurrentState = CustomerState.Leaving;
             bar.FailOrder();
+
+            if (levelController.GameOver)
+            {
+                sr.material.SetInt("_UseUnscaledTime", 1);
+            }
+
             Leave();
         }
         else
@@ -210,6 +218,7 @@ public class Customer : MonoBehaviour
 
     private void DestroySafely()
     {
+        onCustomerLeave.Invoke();
         StopAllCoroutines();
         navigation.ClearOnTargetReachedListener();
         Destroy(gameObject);

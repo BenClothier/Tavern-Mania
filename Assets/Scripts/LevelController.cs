@@ -10,10 +10,21 @@ public class LevelController : MonoBehaviour
     [SerializeField] private DrinkHeld drinkHeld;
     [SerializeField] private FloatVariable patienceDropMultiplierVar;
 
-    Stack<int> orderStack;
-    Stack<CustomerType> customerStack;
+    [Header("Events")]
+    [SerializeField] private EventChannel_GameOverInfo onGameOver;
+    [SerializeField] private EventChannel_Void onLevelComplete;
+    [SerializeField] private EventChannel_Vector2 onOrderFailed;
+    [SerializeField] private EventChannel_Void onCustomerLeave;
+
+    [Header("Game-wide Variables")]
+    [SerializeField] private IntVariable livesPerLevel;
 
     private CustomerSpawn customerSpawn;
+
+    private Stack<int> orderStack;
+    private Stack<CustomerType> customerStack;
+
+    private int livesRemaining;
 
     private enum CustomerType
     {
@@ -23,12 +34,22 @@ public class LevelController : MonoBehaviour
 
     public bool GameOver { get; private set; }
 
+    public bool LevelComplete { get; private set; }
+
     public LevelSettings LevelSettings => levelSettings;
 
     private void Awake()
     {
+        var rnd = new System.Random();
+
+        // Reset game variables for level
         drinkHeld.EmptyGlass();
 
+        // Initialise listeners
+        onOrderFailed.OnEventInvocation += LoseLife;
+        onCustomerLeave.OnEventInvocation += CheckForVictory;
+
+        // Initalise barrels with liquid
         Barrel[] barrels = FindObjectsOfType<Barrel>();
 
         Assert.IsTrue(barrels.Length == levelSettings.liquidsAvailable.Count, "Barrel count does not match liquid count!!");
@@ -38,8 +59,6 @@ public class LevelController : MonoBehaviour
         {
             barrels[i].Liquid = levelSettings.liquidsAvailable[i];
         }
-
-        var rnd = new System.Random();
 
         // Pre-generate sequence of orders
         List<int> orders = new List<int>();
@@ -57,7 +76,16 @@ public class LevelController : MonoBehaviour
         customerSpawn = FindObjectOfType<CustomerSpawn>();
         patienceDropMultiplierVar.Value = levelSettings.patienceDropMultiplier;
 
+        // Set local variables
+        livesRemaining = livesPerLevel.Value;
+
         StartCoroutine(SpawnCustomerRoutine());
+    }
+
+    private void OnDisable()
+    {
+        onOrderFailed.OnEventInvocation -= LoseLife;
+        onCustomerLeave.OnEventInvocation -= CheckForVictory;
     }
 
     public DrinkMix GenerateOrder(Customer customer)
@@ -73,9 +101,31 @@ public class LevelController : MonoBehaviour
         return new DrinkMix(liquids);
     }
 
+    private void LoseLife(Vector2 loseOrderPosition)
+    {
+        livesRemaining--;
+
+        if (livesRemaining < 1)
+        {
+            GameOver = true;
+            onGameOver.Invoke(new GameOverInfo(loseOrderPosition));
+            Time.timeScale = 0;
+        }
+    }
+
+    private void CheckForVictory()
+    {
+        if (customerStack.Count < 1 && FindObjectsOfType<Customer>().Count() < 2)
+        {
+            LevelComplete = true;
+            onLevelComplete.Invoke();
+            Time.timeScale = 0;
+        }
+    }
+
     private IEnumerator SpawnCustomerRoutine()
     {
-        while (!GameOver && customerStack.Count > 0)
+        while (!GameOver && !LevelComplete && customerStack.Count > 0)
         {
             yield return new WaitForSeconds(levelSettings.customerSpawnPeriodCurve.Evaluate(1 - ((float)customerStack.Count / levelSettings.TotalCustomersThisLevel)));
 
