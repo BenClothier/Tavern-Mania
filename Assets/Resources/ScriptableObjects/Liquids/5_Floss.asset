@@ -15,4 +15,4 @@ MonoBehaviour:
   ID: 5
   Name: Floss
   colour: {r: 0.9137255, g: 0.1254902, b: 0.6990283, a: 1}
-  symbol: {fileID: 1340034871, guid: e387ecd29ec077f4eb5240cb19b29107, type: 3}
+  symbol: {fileID: 57467761, guid: e387ecd29ec077f4eb5240cb19b29107, type: 3}

@@ -15,11 +15,11 @@ MonoBehaviour:
   liquidsAvailable:
   - {fileID: 11400000, guid: 6d84af076a3b85047bab052349f58da4, type: 2}
   - {fileID: 11400000, guid: e4b3613329a1fe749a68f26671b032f8, type: 2}
-  maxSingleOrders: 5
-  maxDoubleOrders: 15
-  maxTripleOrders: 5
+  maxSingleOrders: 10
+  maxDoubleOrders: 20
+  maxTripleOrders: 10
   customerCount: 25
-  magicCustomerCount: 5
+  magicCustomerCount: 3
   customerSpawnPeriodCurve:
     serializedVersion: 2
     m_Curve:
