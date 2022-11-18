@@ -9,8 +9,8 @@ public class LevelController : MonoBehaviour
     [SerializeField] private LevelSettings levelSettings;
     [SerializeField] private DrinkHeld drinkHeld;
     [SerializeField] private FloatVariable patienceDropMultiplierVar;
-    [SerializeField] private EventChannel_Void onOrderFailed;
-    [SerializeField] private EventChannel_Void onGameOver;
+    [SerializeField] private EventChannel_Vector2 onOrderFailed;
+    [SerializeField] private EventChannel_GameOverInfo onGameOver;
 
     [Header("Game-wide Variables")]
     [SerializeField] private IntVariable livesPerLevel;
@@ -88,14 +88,14 @@ public class LevelController : MonoBehaviour
         return new DrinkMix(liquids);
     }
 
-    private void LoseLife()
+    private void LoseLife(Vector2 loseOrderPosition)
     {
         livesRemaining--;
 
         if (livesRemaining < 1)
         {
             GameOver = true;
-            onGameOver.Invoke();
+            onGameOver.Invoke(new GameOverInfo(loseOrderPosition));
             Time.timeScale = 0;
         }
     }

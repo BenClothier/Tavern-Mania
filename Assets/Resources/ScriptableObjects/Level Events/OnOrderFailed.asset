@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32cfea5e2688867458364c562d08a897, type: 3}
-  m_Name: OnGameOver
+  m_Script: {fileID: 11500000, guid: a54257d2f017e014a8e028127dbac70e, type: 3}
+  m_Name: OnOrderFailed
   m_EditorClassIdentifier: 
