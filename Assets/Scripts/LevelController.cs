@@ -8,7 +8,14 @@ public class LevelController : MonoBehaviour
 {
     [SerializeField] private LevelSettings levelSettings;
     [SerializeField] private DrinkHeld drinkHeld;
+
+    [Header("Intensity Calculation")]
     [SerializeField] private FloatVariable patienceDropMultiplierVar;
+    [SerializeField] private FloatVariable lowestPatienceVar;
+    [SerializeField] private AnimationCurve intensityValueByCustomerCount;
+    [SerializeField] private AnimationCurve intensityMultiplierByLowestPatience;
+    [SerializeField] private AnimationCurve intensityMultiplierByPatienceDropMultiplier;
+    [SerializeField] private float intensityFollowSpeed = 0.2f;
 
     [Header("Events")]
     [SerializeField] private EventChannel_GameOverInfo onGameOver;
@@ -25,6 +32,8 @@ public class LevelController : MonoBehaviour
     private Stack<CustomerType> customerStack;
 
     private int livesRemaining;
+    private int customerCount;
+    private float targetIntensity;
 
     private enum CustomerType
     {
@@ -36,6 +45,8 @@ public class LevelController : MonoBehaviour
 
     public bool LevelComplete { get; private set; }
 
+    public float Intensity { get; private set; }
+
     public LevelSettings LevelSettings => levelSettings;
 
     private void Awake()
@@ -44,10 +55,11 @@ public class LevelController : MonoBehaviour
 
         // Reset game variables for level
         drinkHeld.EmptyGlass();
+        lowestPatienceVar.Value = 1000;
 
         // Initialise listeners
         onOrderFailed.OnEventInvocation += LoseLife;
-        onCustomerLeave.OnEventInvocation += CheckForVictory;
+        onCustomerLeave.OnEventInvocation += OnCustomerLeave;
 
         // Initalise barrels with liquid
         Barrel[] barrels = FindObjectsOfType<Barrel>();
@@ -85,7 +97,15 @@ public class LevelController : MonoBehaviour
     private void OnDisable()
     {
         onOrderFailed.OnEventInvocation -= LoseLife;
-        onCustomerLeave.OnEventInvocation -= CheckForVictory;
+        onCustomerLeave.OnEventInvocation -= OnCustomerLeave;
+    }
+
+    private void Update()
+    {
+        targetIntensity = intensityValueByCustomerCount.Evaluate(customerCount) * intensityMultiplierByLowestPatience.Evaluate(lowestPatienceVar.Value) * intensityMultiplierByPatienceDropMultiplier.Evaluate(patienceDropMultiplierVar.Value);
+        Intensity = Mathf.Lerp(Intensity, targetIntensity, intensityFollowSpeed * Time.unscaledDeltaTime);
+
+        Debug.Log($"actual: {Intensity}, target: {targetIntensity}");
     }
 
     public DrinkMix GenerateOrder(Customer customer)
@@ -113,9 +133,15 @@ public class LevelController : MonoBehaviour
         }
     }
 
+    private void OnCustomerLeave()
+    {
+        customerCount--;
+        CheckForVictory();
+    }
+
     private void CheckForVictory()
     {
-        if (customerStack.Count < 1 && FindObjectsOfType<Customer>().Count() < 2)
+        if (customerStack.Count < 1 && customerCount < 1)
         {
             LevelComplete = true;
             onLevelComplete.Invoke();
@@ -137,6 +163,43 @@ public class LevelController : MonoBehaviour
             {
                 customerSpawn.SpawnMagicCustomer();
             }
+
+            customerCount++;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.Lerp(Color.green, Color.red, intensityValueByCustomerCount.Evaluate(customerCount) / 1);
+        Gizmos.DrawSphere(Vector2.left * 6, 0.2f);
+
+        float val = intensityMultiplierByLowestPatience.Evaluate(lowestPatienceVar.Value);
+        if (val < 1)
+        {
+            Gizmos.color = Color.Lerp(Color.blue, Color.white, (val - 0.5f) / 0.5f);
+        }
+        else
+        {
+            Gizmos.color = Color.Lerp(Color.white, Color.red, (val - 1) / 0.2f);
+        }
+        Gizmos.DrawSphere(Vector2.left * 5, 0.2f);
+
+        val = intensityMultiplierByPatienceDropMultiplier.Evaluate(patienceDropMultiplierVar.Value);
+        if (val < 0)
+        {
+            Gizmos.color = Color.magenta;
+        }
+        else if (val < 1)
+        {
+            Gizmos.color = Color.blue;
+        }
+        else
+        {
+            Gizmos.color = Color.Lerp(Color.white, Color.red, (val - 1) / 0.5f);
+        }
+        Gizmos.DrawSphere(Vector2.left * 4, 0.2f);
+
+        Gizmos.color = Color.LerpUnclamped(Color.green, Color.red, Intensity / 1);
+        Gizmos.DrawSphere(Vector2.left * 5 + Vector2.up, 0.5f);
     }
 }

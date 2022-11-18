@@ -12,6 +12,7 @@ public class Customer : MonoBehaviour
     [SerializeField] private float startPatience;
     [SerializeField] private float maxPatience;
     [SerializeField] private FloatVariable patienceDropMultiplier;
+    [SerializeField] private FloatVariable lowestPatienceVar;
     [SerializeField] private AnimationCurve patienceProportionToAnger;
     [SerializeField] private float angerReturnTime = 1.5f;
 
@@ -168,6 +169,11 @@ public class Customer : MonoBehaviour
         {
             yield return null;
             currentPatience = Mathf.Clamp(currentPatience - patienceDropMultiplier.Value * Time.deltaTime, 0, maxPatience);
+
+            if (CurrentState == CustomerState.Ordered && currentPatience < lowestPatienceVar.Value)
+            {
+                lowestPatienceVar.Value = currentPatience;
+            }
         }
 
         if (CurrentState == CustomerState.Ordered && currentPatience <= 0 && bar != null)
@@ -191,7 +197,6 @@ public class Customer : MonoBehaviour
     {
         if (CurrentState == CustomerState.Ordered)
         {
-
             CurrentState = CustomerState.Leaving;
             bar.FailOrder();
 
@@ -210,6 +215,7 @@ public class Customer : MonoBehaviour
 
     private void Leave()
     {
+        lowestPatienceVar.Value = startPatience;
         col.enabled = false;
         navigation.canSearch = true;
         navigation.destination = spawn.transform.position;

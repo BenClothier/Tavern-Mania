@@ -47,6 +47,98 @@ MonoBehaviour:
   levelSettings: {fileID: 0}
   drinkHeld: {fileID: 11400000, guid: 6725119e4ba28f645bcd39703efebc59, type: 2}
   patienceDropMultiplierVar: {fileID: 11400000, guid: 74e0c91f58025174c80f39f96ec7a109, type: 2}
+  lowestPatienceVar: {fileID: 11400000, guid: 14d1e7a90b841ab4ab862b758a2b082a, type: 2}
+  intensityValueByCustomerCount:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.05
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.09541903
+    - serializedVersion: 3
+      time: 15
+      value: 1
+      inSlope: 0.099300265
+      outSlope: 0.099300265
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.774584
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  intensityMultiplierByLowestPatience:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1.2
+      inSlope: -0.102682985
+      outSlope: -0.020000005
+      tangentMode: 65
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.06610034
+    - serializedVersion: 3
+      time: 10
+      value: 1
+      inSlope: -0.020000005
+      outSlope: 0.00016256582
+      tangentMode: 5
+      weightedMode: 2
+      inWeight: 0.33333334
+      outWeight: 0.6006449
+    - serializedVersion: 3
+      time: 20
+      value: 0.5
+      inSlope: -0.098614894
+      outSlope: -0.098614894
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.047105215
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  intensityMultiplierByPatienceDropMultiplier:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.01
+      value: 0.5
+      inSlope: 50
+      outSlope: Infinity
+      tangentMode: 97
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 50
+      outSlope: 0
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  intensityFollowSpeed: 0.2
   onGameOver: {fileID: 11400000, guid: 4cc3e9cb3319647479c0fb39a2123313, type: 2}
   onLevelComplete: {fileID: 11400000, guid: 58f538d7aa8253a42b28cc01bf8bdf34, type: 2}
   onOrderFailed: {fileID: 11400000, guid: d7e23e3a0fde0a1418f48fa82be6b7bd, type: 2}

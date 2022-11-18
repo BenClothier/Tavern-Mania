@@ -55,6 +55,7 @@ MonoBehaviour:
   startPatience: 20
   maxPatience: 20
   patienceDropMultiplier: {fileID: 11400000, guid: 74e0c91f58025174c80f39f96ec7a109, type: 2}
+  lowestPatienceVar: {fileID: 11400000, guid: 14d1e7a90b841ab4ab862b758a2b082a, type: 2}
   patienceProportionToAnger:
     serializedVersion: 2
     m_Curve:
