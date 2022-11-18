@@ -12,6 +12,8 @@ public struct DrinkMix
 
     public int LiquidCount => Liquids.Count;
 
+    public bool IsEmpty => Liquids.Count < 1;
+
     public DrinkMix(params Liquid[] liquids)
     {
         Liquids = new List<Liquid>(liquids);

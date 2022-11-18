@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelSettings: {fileID: 0}
+  patienceDropMultiplierVar: {fileID: 11400000, guid: 74e0c91f58025174c80f39f96ec7a109, type: 2}

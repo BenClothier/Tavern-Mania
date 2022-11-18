@@ -45,37 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customerPrefab: {fileID: 5650234666475818652, guid: aa79754c679d3ab469405fbdb16f5467, type: 3}
-  spawnRate:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 5
-      inSlope: 13.754811
-      outSlope: 13.754811
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.72701836
-      value: 15
-      inSlope: -11.438845
-      outSlope: -11.438845
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 5
-      inSlope: -36.6325
-      outSlope: -36.6325
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  maxCustomers: 1
+  magicCustomerPrefab: {fileID: 5650234666475818652, guid: 8e8006e48a3f3df47af252ce84e27beb, type: 3}

@@ -50,6 +50,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee76c64a3f614b44a9b7cbff1c86d464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPatience: 20
+  maxPatience: 20
+  patienceDropMultiplier: {fileID: 11400000, guid: 74e0c91f58025174c80f39f96ec7a109, type: 2}
+  patienceProportionToAnger:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.00082742365
+      outSlope: -0.00082742365
+      tangentMode: 0
+      weightedMode: 2
+      inWeight: 0
+      outWeight: 0.42655855
+    - serializedVersion: 3
+      time: 0.7
+      value: 0
+      inSlope: -0.009546919
+      outSlope: Infinity
+      tangentMode: 97
+      weightedMode: 3
+      inWeight: 0.2873617
+      outWeight: 0.304412
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.005423
+      outSlope: -0.005423
+      tangentMode: 0
+      weightedMode: 1
+      inWeight: 0.36574233
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  angerReturnTime: 1.5
 --- !u!212 &3961329736492728143
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -70,7 +107,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: e843780130d4a3e4fb6835e285bd4f42, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

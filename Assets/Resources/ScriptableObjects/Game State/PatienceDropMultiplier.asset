@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd0327f1213a5d848a594104779d1f6d, type: 3}
-  m_Name: Level_2
+  m_Script: {fileID: 11500000, guid: 6e7a258dd8abfd84b8e6b59386f8fcd9, type: 3}
+  m_Name: PatienceDropMultiplier
   m_EditorClassIdentifier: 
-  liquidsAvailable:
-  - {fileID: 11400000, guid: 72370929e46f1234988a1edef1d931b8, type: 2}
-  - {fileID: 11400000, guid: 6d84af076a3b85047bab052349f58da4, type: 2}
+  value: 1
