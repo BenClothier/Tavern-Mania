@@ -9,7 +9,7 @@ public class MagicalCustomer : Customer
     {
         if (CurrentState == CustomerState.Ordered)
         {
-            Instantiate(patienceCalmerPrefab);
+            Instantiate(patienceCalmerPrefab, transform.position, Quaternion.identity);
         }
 
         base.OnOrderSatisfied(bar, drinkMix);
