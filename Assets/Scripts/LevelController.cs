@@ -9,8 +9,12 @@ public class LevelController : MonoBehaviour
     [SerializeField] private LevelSettings levelSettings;
     [SerializeField] private DrinkHeld drinkHeld;
     [SerializeField] private FloatVariable patienceDropMultiplierVar;
-    [SerializeField] private EventChannel_Vector2 onOrderFailed;
+
+    [Header("Events")]
     [SerializeField] private EventChannel_GameOverInfo onGameOver;
+    [SerializeField] private EventChannel_Void onLevelComplete;
+    [SerializeField] private EventChannel_Vector2 onOrderFailed;
+    [SerializeField] private EventChannel_Void onCustomerLeave;
 
     [Header("Game-wide Variables")]
     [SerializeField] private IntVariable livesPerLevel;
@@ -30,6 +34,8 @@ public class LevelController : MonoBehaviour
 
     public bool GameOver { get; private set; }
 
+    public bool LevelComplete { get; private set; }
+
     public LevelSettings LevelSettings => levelSettings;
 
     private void Awake()
@@ -41,6 +47,7 @@ public class LevelController : MonoBehaviour
 
         // Initialise listeners
         onOrderFailed.OnEventInvocation += LoseLife;
+        onCustomerLeave.OnEventInvocation += CheckForVictory;
 
         // Initalise barrels with liquid
         Barrel[] barrels = FindObjectsOfType<Barrel>();
@@ -75,6 +82,12 @@ public class LevelController : MonoBehaviour
         StartCoroutine(SpawnCustomerRoutine());
     }
 
+    private void OnDisable()
+    {
+        onOrderFailed.OnEventInvocation -= LoseLife;
+        onCustomerLeave.OnEventInvocation -= CheckForVictory;
+    }
+
     public DrinkMix GenerateOrder(Customer customer)
     {
         List<Liquid> liquids = new ();
@@ -100,9 +113,19 @@ public class LevelController : MonoBehaviour
         }
     }
 
+    private void CheckForVictory()
+    {
+        if (customerStack.Count < 1 && FindObjectsOfType<Customer>().Count() < 2)
+        {
+            LevelComplete = true;
+            onLevelComplete.Invoke();
+            Time.timeScale = 0;
+        }
+    }
+
     private IEnumerator SpawnCustomerRoutine()
     {
-        while (!GameOver && customerStack.Count > 0)
+        while (!GameOver && !LevelComplete && customerStack.Count > 0)
         {
             yield return new WaitForSeconds(levelSettings.customerSpawnPeriodCurve.Evaluate(1 - ((float)customerStack.Count / levelSettings.TotalCustomersThisLevel)));
 

@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
-    [SerializeField] bool activeAI = true;
+    [SerializeField] private bool activeAI = true;
+    [SerializeField] private EventChannel_Void onCustomerLeave;
 
     [Header("Patience")]
     [SerializeField] private float startPatience;
@@ -217,6 +218,7 @@ public class Customer : MonoBehaviour
 
     private void DestroySafely()
     {
+        onCustomerLeave.Invoke();
         StopAllCoroutines();
         navigation.ClearOnTargetReachedListener();
         Destroy(gameObject);

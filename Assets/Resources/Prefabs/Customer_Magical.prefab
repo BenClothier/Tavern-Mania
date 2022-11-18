@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeAI: 1
+  onCustomerLeave: {fileID: 11400000, guid: f88f4aea88644764db7255d9839dfbcf, type: 2}
   startPatience: 25
   maxPatience: 25
   patienceDropMultiplier: {fileID: 11400000, guid: 74e0c91f58025174c80f39f96ec7a109, type: 2}
