@@ -10,7 +10,7 @@ public class Bar : MonoBehaviour
     [SerializeField] private GameObject orderDisplay3Prefab;
     [Space]
     [SerializeField] private EventChannel_Void onOrderSatisfied;
-    [SerializeField] private EventChannel_Void onOrderFailed;
+    [SerializeField] private EventChannel_Vector2 onOrderFailed;
 
     public bool IsVacant { get; private set; } = true;
 
@@ -62,7 +62,7 @@ public class Bar : MonoBehaviour
 
     public void FailOrder()
     {
-        onOrderFailed.Invoke();
+        onOrderFailed.Invoke(transform.position);
         RemoveOrder();
     }
 
