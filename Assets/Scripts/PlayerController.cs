@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour
         {
             drinkHeld.EmptyGlass();
             throwGlassEffect.Play();
+            GlassSmashingControl.instance.GetComponent<AudioSource>().Play();
         }
     }
 }

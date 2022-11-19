@@ -14,4 +14,9 @@ public class LevelSelect : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void Options()
+    {
+        SceneManager.LoadScene(sceneName: "Options Menu");
+    }
 }
