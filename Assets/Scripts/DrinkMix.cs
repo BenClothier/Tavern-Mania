@@ -30,6 +30,17 @@ public struct DrinkMix
     {
         Liquids.Add(liquid);
         Liquids = Liquids.OrderBy(x => x.ID).ToList();
+        if (LiquidCount == 1)
+        {
+            DrinkPouringSound.instance.sound1.Play();
+        } else if (LiquidCount == 2)
+        {
+            DrinkPouringSound.instance.sound2.Play();
+        } else if (LiquidCount == 3)
+        {
+            DrinkPouringSound.instance.sound3.Play();
+        }
+
     }
 
     public bool Equals(DrinkMix other)

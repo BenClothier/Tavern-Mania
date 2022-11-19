@@ -21,6 +21,7 @@ public class OptionsMenu : MonoBehaviour
 
     public void GoBack()
     {
+        UISounds.instance.GetComponent<AudioSource>().Play();
         SceneManager.LoadScene(sceneName: "Main Menu");
     }
 

@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
                 if (bar.ServeDrink(drinkHeld.DrinkMix))
                 {
                     drinkHeld.EmptyGlass();
+                    DrinkGivingSound.instance.GetComponent<AudioSource>().Play(); //Play Drink Giving Sound
                 }
                 else
                 {
@@ -83,7 +84,7 @@ public class PlayerController : MonoBehaviour
         {
             drinkHeld.EmptyGlass();
             throwGlassEffect.Play();
-            GlassSmashingControl.instance.GetComponent<AudioSource>().Play();
+            GlassSmashingControl.instance.GetComponent<AudioSource>().Play(); //Play Glass Smashing Sound
         }
     }
 }
