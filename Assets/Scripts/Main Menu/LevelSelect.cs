@@ -13,6 +13,8 @@ public class LevelSelect : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
+        Debug.Log("Game is exiting");
     }
 
     public void Options()
