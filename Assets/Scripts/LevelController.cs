@@ -51,6 +51,7 @@ public class LevelController : MonoBehaviour
 
     private void Awake()
     {
+        LevelMusicController.instance.StartMusic();
         var rnd = new System.Random();
 
         // Reset game variables for level
@@ -128,6 +129,7 @@ public class LevelController : MonoBehaviour
 
         if (livesRemaining < 1)
         {
+            LevelMusicController.instance.music1.Pause();
             GameOver = true;
             onGameOver.Invoke(new GameOverInfo(loseOrderPosition));
             Time.timeScale = 0;
@@ -144,6 +146,7 @@ public class LevelController : MonoBehaviour
     {
         if (customerStack.Count < 1 && customerCount < 1)
         {
+            LevelMusicController.instance.music1.Pause();
             LevelComplete = true;
             onLevelComplete.Invoke();
             Time.timeScale = 0;

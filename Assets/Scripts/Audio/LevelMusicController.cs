@@ -10,54 +10,59 @@ public class LevelMusicController : MonoBehaviour
     public AudioSource music3;
     public AudioSource music4;
 
+    private bool playing;
+
     public void UpdateIntensity(float intensity)
     {
-        if ((intensity >= 0) && (intensity < 0.4f))
+        if (playing == true)
         {
-            if (music1 != null && !music1.isPlaying)
+            if ((intensity >= 0) && (intensity < 0.4f))
             {
-                PauseAllMusic();
-                music1.Play();
+                if (music1 != null && !music1.isPlaying)
+                {
+                    PauseAllMusic();
+                    music1.Play();
+                }
+                else
+                {
+                    Debug.LogWarning("No Music1 was assigned!");
+                }
             }
-            else
+            else if ((intensity >= 0.4f) && (intensity < 0.7f))
             {
-                Debug.LogWarning("No Music1 was assigned!");
+                if (music2 != null && !music2.isPlaying)
+                {
+                    PauseAllMusic();
+                    music2.Play();
+                }
+                else
+                {
+                    Debug.LogWarning("No Music2 was assigned!");
+                }
             }
-        } 
-        else if ((intensity >= 0.4f) && (intensity < 0.7f))
-        {
-            if (music2 != null && !music2.isPlaying)
+            else if ((intensity >= 0.7f) && (intensity < 0.9f))
             {
-                PauseAllMusic();
-                music2.Play();
+                if (music3 != null && !music3.isPlaying)
+                {
+                    PauseAllMusic();
+                    music3.Play();
+                }
+                else
+                {
+                    Debug.LogWarning("No Music3 was assigned!");
+                }
             }
-            else
+            else if (intensity >= 0.9f)
             {
-                Debug.LogWarning("No Music2 was assigned!");
-            }
-        } 
-        else if ((intensity >= 0.7f) && (intensity < 0.9f))
-        {
-            if (music3 != null && !music3.isPlaying)
-            {
-                PauseAllMusic();
-                music3.Play();
-            }
-            else
-            {
-                Debug.LogWarning("No Music3 was assigned!");
-            }
-        } 
-        else if (intensity >= 0.9f)
-        {
-            if (music4 != null && !music4.isPlaying)
-            {
-                PauseAllMusic();
-                music4.Play();
-            }
-            else
-            {
-                Debug.LogWarning("No Music4 was assigned!");
+                if (music4 != null && !music4.isPlaying)
+                {
+                    PauseAllMusic();
+                    music4.Play();
+                }
+                else
+                {
+                    Debug.LogWarning("No Music4 was assigned!");
+                }
             }
         }
     }
@@ -67,7 +72,8 @@ public class LevelMusicController : MonoBehaviour
         DontDestroyOnLoad(this.gameObject); 
         if (instance == null)
         {
-            instance = this; 
+            instance = this;
+            playing = true;
         }
         else 
         {
@@ -75,8 +81,14 @@ public class LevelMusicController : MonoBehaviour
         }
     }
 
+    public void StartMusic()
+    {
+        playing = true;
+    }
+
     public void PauseAllMusic()
     {
+        playing = false;
         if (music1 != null)
         {
             music1.Pause();

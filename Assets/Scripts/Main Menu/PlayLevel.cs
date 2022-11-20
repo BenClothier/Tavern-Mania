@@ -95,7 +95,7 @@ public class PlayLevel : MonoBehaviour
             UISounds.instance.GetComponent<AudioSource>().Play();
         }
 
-        LevelMusicController.instance.music1.Play();
+        
     }
 
     public void PlayLevel1()
