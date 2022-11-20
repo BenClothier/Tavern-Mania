@@ -75,7 +75,7 @@ public class LevelMusicController : MonoBehaviour
         }
     }
 
-    private void PauseAllMusic()
+    public void PauseAllMusic()
     {
         if (music1 != null)
         {

@@ -11,9 +11,7 @@ public class LevelSelect : MonoBehaviour
     {
         if (!MenuMusicControl.instance.GetComponent<AudioSource>().isPlaying)
         {
-            LevelMusicController.instance.music1.Pause();
-            LevelMusicController.instance.music2.Pause();
-            LevelMusicController.instance.music3.Pause();
+            LevelMusicController.instance.PauseAllMusic();
             MenuMusicControl.instance.GetComponent<AudioSource>().Play();
         }
     }
