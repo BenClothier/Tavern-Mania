@@ -5,6 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelect : MonoBehaviour
 {
+
+
+    public void Start()
+    {
+        if (!MenuMusicControl.instance.GetComponent<AudioSource>().isPlaying)
+        {
+            LevelMusicController.instance.music1.Pause();
+            LevelMusicController.instance.music2.Pause();
+            LevelMusicController.instance.music3.Pause();
+            MenuMusicControl.instance.GetComponent<AudioSource>().Play();
+        }
+    }
+
+
+
     public void PlayLevelSelect()
     {
         if (UISounds.instance)
