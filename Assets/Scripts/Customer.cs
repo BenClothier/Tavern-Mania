@@ -6,7 +6,7 @@ using UnityEngine;
 public class Customer : MonoBehaviour
 {
     [SerializeField] private bool activeAI = true;
-    [SerializeField] private EventChannel_Void onCustomerLeave;
+    [SerializeField] private EventChannel_Customer onCustomerLeave;
 
     [Header("Patience")]
     [SerializeField] private float startPatience;
@@ -16,8 +16,6 @@ public class Customer : MonoBehaviour
     [SerializeField] private AnimationCurve patienceProportionToAnger;
     [SerializeField] private float angerReturnTime = 1.5f;
 
-    public CustomerState CurrentState { get; private set; }
-
     private LevelController levelController;
     private CustomerSpawn spawn;
 
@@ -26,7 +24,9 @@ public class Customer : MonoBehaviour
     private SpriteRenderer sr;
     private CircleCollider2D col;
 
-    private float currentPatience;
+    public CustomerState CurrentState { get; private set; }
+
+    public float CurrentPatience { get; private set; }
 
     private void Awake()
     {
@@ -38,7 +38,7 @@ public class Customer : MonoBehaviour
         levelController = FindObjectOfType<LevelController>();
         spawn = FindObjectOfType<CustomerSpawn>();
 
-        currentPatience = startPatience;
+        CurrentPatience = startPatience;
 
         if (!activeAI)
         {
@@ -64,7 +64,7 @@ public class Customer : MonoBehaviour
     {
         animator.SetFloat("Horizontal", navigation.velocity.x);
         animator.SetFloat("Vertical", navigation.velocity.y);
-        sr.material.SetFloat("_Anger", patienceProportionToAnger.Evaluate(currentPatience / maxPatience));
+        sr.material.SetFloat("_Anger", patienceProportionToAnger.Evaluate(CurrentPatience / maxPatience));
         sr.material.SetFloat("_UnscaledTime", Time.unscaledTime);
     }
 
@@ -163,20 +163,20 @@ public class Customer : MonoBehaviour
 
     private IEnumerator PatienceClock(Bar bar)
     {
-        currentPatience = startPatience;
+        CurrentPatience = startPatience;
 
-        while (currentPatience > 0 && CurrentState == CustomerState.Ordered)
+        while (CurrentPatience > 0 && CurrentState == CustomerState.Ordered)
         {
             yield return null;
-            currentPatience = Mathf.Clamp(currentPatience - patienceDropMultiplier.Value * Time.deltaTime, 0, maxPatience);
+            CurrentPatience = Mathf.Clamp(CurrentPatience - patienceDropMultiplier.Value * Time.deltaTime, 0, maxPatience);
 
-            if (CurrentState == CustomerState.Ordered && currentPatience < lowestPatienceVar.Value)
+            if (CurrentState == CustomerState.Ordered && CurrentPatience < lowestPatienceVar.Value)
             {
-                lowestPatienceVar.Value = currentPatience;
+                lowestPatienceVar.Value = CurrentPatience;
             }
         }
 
-        if (CurrentState == CustomerState.Ordered && currentPatience <= 0 && bar != null)
+        if (CurrentState == CustomerState.Ordered && CurrentPatience <= 0 && bar != null)
         {
             OnOrderFailed(bar);
         }
@@ -184,12 +184,12 @@ public class Customer : MonoBehaviour
 
     private IEnumerator ManualPatienceClock()
     {
-        currentPatience = startPatience;
+        CurrentPatience = startPatience;
 
-        while (currentPatience > 0 && !activeAI)
+        while (CurrentPatience > 0 && !activeAI)
         {
             yield return null;
-            currentPatience = Mathf.Clamp(currentPatience - patienceDropMultiplier.Value * Time.deltaTime, 0, maxPatience);
+            CurrentPatience = Mathf.Clamp(CurrentPatience - patienceDropMultiplier.Value * Time.deltaTime, 0, maxPatience);
         }
     }
 
@@ -224,7 +224,7 @@ public class Customer : MonoBehaviour
 
     private void DestroySafely()
     {
-        onCustomerLeave.Invoke();
+        onCustomerLeave.Invoke(this);
         StopAllCoroutines();
         navigation.ClearOnTargetReachedListener();
         Destroy(gameObject);
@@ -232,7 +232,7 @@ public class Customer : MonoBehaviour
 
     private IEnumerator ReturnAngerToZero()
     {
-        float finalAnger = patienceProportionToAnger.Evaluate(currentPatience / startPatience);
+        float finalAnger = patienceProportionToAnger.Evaluate(CurrentPatience / startPatience);
         float newAnger = finalAnger;
         float timePassed = 0;
 

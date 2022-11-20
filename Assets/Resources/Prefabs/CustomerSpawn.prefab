@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5167fd026cd040c4b94c68514a4cc6f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customerPrefab: {fileID: 5650234666475818652, guid: aa79754c679d3ab469405fbdb16f5467, type: 3}
-  magicCustomerPrefab: {fileID: 5650234666475818652, guid: 8e8006e48a3f3df47af252ce84e27beb, type: 3}
+  customerPrefab: {fileID: 5389157951977115387, guid: aa79754c679d3ab469405fbdb16f5467, type: 3}
+  magicCustomerPrefab: {fileID: 4903709896556344013, guid: 8e8006e48a3f3df47af252ce84e27beb, type: 3}

@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.UIElements;
 
 public class LevelController : MonoBehaviour
 {
@@ -12,16 +14,16 @@ public class LevelController : MonoBehaviour
     [Header("Intensity Calculation")]
     [SerializeField] private FloatVariable patienceDropMultiplierVar;
     [SerializeField] private FloatVariable lowestPatienceVar;
-    [SerializeField] private AnimationCurve intensityValueByCustomerCount;
+    [SerializeField] private AnimationCurve intensityValueByAveragePatience;
     [SerializeField] private AnimationCurve intensityMultiplierByLowestPatience;
     [SerializeField] private AnimationCurve intensityMultiplierByPatienceDropMultiplier;
-    [SerializeField] private float intensityFollowSpeed = 0.2f;
+    [SerializeField] private float intensityFollowSpeed = 0.3f;
 
     [Header("Events")]
     [SerializeField] private EventChannel_GameOverInfo onGameOver;
     [SerializeField] private EventChannel_Void onLevelComplete;
     [SerializeField] private EventChannel_Vector2 onOrderFailed;
-    [SerializeField] private EventChannel_Void onCustomerLeave;
+    [SerializeField] private EventChannel_Customer onCustomerLeave;
 
     [Header("Game-wide Variables")]
     [SerializeField] private IntVariable livesPerLevel;
@@ -32,8 +34,10 @@ public class LevelController : MonoBehaviour
     private Stack<CustomerType> customerStack;
 
     private int livesRemaining;
-    private int customerCount;
     private float targetIntensity;
+    private int customerCount;
+
+    private List<Customer> customers = new List<Customer>();
 
     private enum CustomerType
     {
@@ -51,7 +55,6 @@ public class LevelController : MonoBehaviour
 
     private void Awake()
     {
-        LevelMusicController.instance.StartMusic();
         var rnd = new System.Random();
 
         // Reset game variables for level
@@ -103,11 +106,12 @@ public class LevelController : MonoBehaviour
 
     private void Update()
     {
-        targetIntensity = intensityValueByCustomerCount.Evaluate(customerCount) * intensityMultiplierByLowestPatience.Evaluate(lowestPatienceVar.Value) * intensityMultiplierByPatienceDropMultiplier.Evaluate(patienceDropMultiplierVar.Value);
-        Intensity = Mathf.Lerp(Intensity, targetIntensity, intensityFollowSpeed * Time.unscaledDeltaTime);
-        LevelMusicController.instance.UpdateIntensity(Intensity);
+        targetIntensity =
+            (customers.Count < 1 ? 0 : intensityValueByAveragePatience.Evaluate(customers.Average(c => c.CurrentPatience)))
+            * intensityMultiplierByPatienceDropMultiplier.Evaluate(patienceDropMultiplierVar.Value)
+            * intensityMultiplierByLowestPatience.Evaluate(lowestPatienceVar.Value);
 
-        Debug.Log($"actual: {Intensity}, target: {targetIntensity}");
+        Intensity = Mathf.Lerp(Intensity, targetIntensity, intensityFollowSpeed * Time.unscaledDeltaTime);
     }
 
     public DrinkMix GenerateOrder(Customer customer)
@@ -120,6 +124,8 @@ public class LevelController : MonoBehaviour
             liquids.Add(levelSettings.liquidsAvailable[UnityEngine.Random.Range(0, levelSettings.liquidsAvailable.Count)]);
         }
 
+        customers.Add(customer);
+
         return new DrinkMix(liquids);
     }
 
@@ -129,17 +135,16 @@ public class LevelController : MonoBehaviour
 
         if (livesRemaining < 1)
         {
-            LevelMusicController.instance.music1.Pause();
-            LevelMusicController.instance.PlayLossMusic();
             GameOver = true;
             onGameOver.Invoke(new GameOverInfo(loseOrderPosition));
             Time.timeScale = 0;
         }
     }
 
-    private void OnCustomerLeave()
+    private void OnCustomerLeave(Customer customer)
     {
         customerCount--;
+        customers.Remove(customer);
         CheckForVictory();
     }
 
@@ -147,8 +152,6 @@ public class LevelController : MonoBehaviour
     {
         if (customerStack.Count < 1 && customerCount < 1)
         {
-            LevelMusicController.instance.music1.Pause();
-            LevelMusicController.instance.PlayVictoryMusic();
             LevelComplete = true;
             onLevelComplete.Invoke();
             Time.timeScale = 0;
@@ -174,38 +177,63 @@ public class LevelController : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.Lerp(Color.green, Color.red, intensityValueByCustomerCount.Evaluate(customerCount) / 1);
-        Gizmos.DrawSphere(Vector2.left * 6, 0.2f);
+        Handles.color = Color.Lerp(Color.green, Color.red, Intensity / 1);
+        Handles.DrawSolidDisc(Vector2.left * 5 + Vector2.up * 3, Vector3.forward, 0.2f);
+        Handles.Label(Vector2.left * 5 + Vector2.up * 3.4f, $"{Intensity}");
 
-        float val = intensityMultiplierByLowestPatience.Evaluate(lowestPatienceVar.Value);
+        Handles.color = Color.Lerp(Color.green, Color.red, targetIntensity / 1);
+        Handles.DrawSolidDisc(Vector2.left * 5 + Vector2.up * 2, Vector3.forward, 0.2f);
+        Handles.Label(Vector2.left * 5 + Vector2.up * 2.4f, $"{targetIntensity}");
+
+        float val = customers.Count < 1 ? 0 : intensityValueByAveragePatience.Evaluate(customers.Average(c => c.CurrentPatience));
+
         if (val < 1)
         {
-            Gizmos.color = Color.Lerp(Color.blue, Color.white, (val - 0.5f) / 0.5f);
+            Handles.color = Color.Lerp(Color.blue, Color.green, val / 1);
         }
         else
         {
-            Gizmos.color = Color.Lerp(Color.white, Color.red, (val - 1) / 0.2f);
+            Handles.color = Color.Lerp(Color.green, Color.red, (val - 1) / 1);
         }
-        Gizmos.DrawSphere(Vector2.left * 5, 0.2f);
+
+        Handles.DrawSolidDisc(Vector2.left * 5 + Vector2.up, Vector3.forward, 0.2f);
+        Handles.Label(Vector2.left * 5 + Vector2.up * 1.4f, $"{val}");
+
+
+        val = intensityMultiplierByLowestPatience.Evaluate(lowestPatienceVar.Value);
+
+        if (val < 1)
+        {
+            Handles.color = Color.Lerp(Color.blue, Color.green, val / 1);
+        }
+        else
+        {
+            Handles.color = Color.Lerp(Color.green, Color.red, (val - 1) / 1);
+        }
+
+        Handles.DrawSolidDisc(Vector2.left * 6, Vector3.forward, 0.2f);
+        Handles.Label(Vector2.left * 6 + Vector2.down * .4f, $"{val}");
 
         val = intensityMultiplierByPatienceDropMultiplier.Evaluate(patienceDropMultiplierVar.Value);
+
         if (val < 0)
         {
-            Gizmos.color = Color.magenta;
+            Handles.color = Color.Lerp(Color.magenta, Color.blue, (val + 1) / 1);
         }
         else if (val < 1)
         {
-            Gizmos.color = Color.blue;
+            Handles.color = Color.Lerp(Color.blue, Color.green, val / 1);
         }
         else
         {
-            Gizmos.color = Color.Lerp(Color.white, Color.red, (val - 1) / 0.5f);
+            Handles.color = Color.Lerp(Color.green, Color.red, (val - 1) / 1);
         }
-        Gizmos.DrawSphere(Vector2.left * 4, 0.2f);
 
-        Gizmos.color = Color.LerpUnclamped(Color.green, Color.red, Intensity / 1);
-        Gizmos.DrawSphere(Vector2.left * 5 + Vector2.up, 0.5f);
+        Handles.DrawSolidDisc(Vector2.left * 4, Vector3.forward, 0.2f);
+        Handles.Label(Vector2.left * 4 + Vector2.down * .4f, $"{val}");
     }
+#endif
 }

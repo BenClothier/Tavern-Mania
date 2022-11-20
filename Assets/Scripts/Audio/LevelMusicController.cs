@@ -1,95 +1,164 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.UI;
 
 public class LevelMusicController : MonoBehaviour
 {
-    public static LevelMusicController instance;
+    [SerializeField] private float volume;
+    [SerializeField] private float fadeTime;
+    [SerializeField] private EventChannel_GameOverInfo onGameOver;
+    [SerializeField] private EventChannel_Void onLevelComplete;
 
     public AudioSource music1;
     public AudioSource music2;
     public AudioSource victoryMusic;
     public AudioSource lossMusic;
 
-    private bool playing;
+    private LevelController levelController;
+    private Coroutine currentMusicFadeRoutine;
 
-    public void UpdateIntensity(float intensity)
+    private bool levelEnded;
+
+    private void OnEnable()
     {
-        if (playing == true)
-        {
-            if ((intensity >= 0) && (intensity < 0.4f))
-            {
-                if (music1 != null && !music1.isPlaying)
-                {
-                    PauseAllMusic();
-                    music1.Play();
-                }
-                else
-                {
-                    Debug.LogWarning("No Music1 was assigned!");
-                }
-            }
-            else if ((intensity >= 0.4f) && (intensity < 0.7f))
-            {
-                if (music2 != null && !music2.isPlaying)
-                {
-                    PauseAllMusic();
-                    music2.Play();
-                }
-                else
-                {
-                    Debug.LogWarning("No Music2 was assigned!");
-                }
-            }
-        }
+        levelController = FindObjectOfType<LevelController>();
+
+        onGameOver.OnEventInvocation += OnGameOver;
+        onLevelComplete.OnEventInvocation += OnLevelComplete;
+
+        PauseAllMusic();
+        StartCoroutine(PlayLevelMusic());
     }
 
-    private void Awake() 
+    public void OnDisable()
     {
-        DontDestroyOnLoad(this.gameObject); 
-        if (instance == null)
-        {
-            instance = this;
-            playing = true;
-        }
-        else 
-        {
-            Destroy(gameObject); 
-        }
+        onGameOver.OnEventInvocation -= OnGameOver;
+        onLevelComplete.OnEventInvocation -= OnLevelComplete;
+
+        PauseAllMusic();
     }
 
-    public void StartMusic()
+    private void OnGameOver(GameOverInfo info)
     {
-        if (victoryMusic != null)
-        {
-            victoryMusic.Pause();
-        }
-        if (lossMusic != null)
-        {
-            lossMusic.Pause();
-        }
-        playing = true;
+        PauseAllMusic();
+        lossMusic.Play();
+        levelEnded = true;
+    }
+
+    private void OnLevelComplete()
+    {
+        PauseAllMusic();
+        victoryMusic.Play();
+        levelEnded = true;
     }
 
     public void PlayLossMusic()
     {
-        lossMusic.Play();
+        Debug.LogError("Still here");
     }
 
     public void PlayVictoryMusic()
     {
-        victoryMusic.Play();
+        Debug.LogError("Still here");
     }
 
     public void PauseAllMusic()
     {
-        playing = false;
-        if (music1 != null)
+        music1.Pause();
+        music2.Pause();
+        victoryMusic.Pause();
+        lossMusic.Pause();
+    }
+
+    private IEnumerator PlayLevelMusic()
+    {
+        while (enabled && !levelEnded)
         {
-            music1.Pause();
+            if (!music1.isPlaying && levelController.Intensity < 0.5f)
+            {
+                if (currentMusicFadeRoutine != null)
+                {
+                    StopCoroutine(currentMusicFadeRoutine);
+                }
+
+                if (music2.isPlaying)
+                {
+                    currentMusicFadeRoutine = StartCoroutine(FadeBetweenAudioSources(music2, music1, fadeTime));
+                }
+                else
+                {
+                    currentMusicFadeRoutine = StartCoroutine(FadeInAudio(music1, fadeTime));
+                }
+            }
+            else if (!music2.isPlaying && levelController.Intensity >= 0.6f)
+            {
+                if (currentMusicFadeRoutine != null)
+                {
+                    StopCoroutine(currentMusicFadeRoutine);
+                }
+
+                if (music1.isPlaying)
+                {
+                    currentMusicFadeRoutine = StartCoroutine(FadeBetweenAudioSources(music1, music2, fadeTime));
+                }
+                else
+                {
+                    currentMusicFadeRoutine = StartCoroutine(FadeInAudio(music2, fadeTime));
+                }
+            }
+
+            yield return null;
         }
-        if (music2 != null)
+    }
+
+    private IEnumerator FadeBetweenAudioSources(AudioSource fadeOutAudio, AudioSource fadeInAudio, float fadeTime)
+    {
+        float timePassed = 0;
+        float startInVolume = fadeInAudio.volume;
+        float startOutVolume = fadeOutAudio.volume;
+
+        fadeInAudio.time = fadeOutAudio.time;
+        fadeInAudio.Play();
+
+        while (timePassed < fadeTime)
         {
-            music2.Pause();
+            fadeOutAudio.volume = Mathf.Lerp(startOutVolume, 0, timePassed / fadeTime * (startOutVolume / volume));
+            fadeInAudio.volume = Mathf.Lerp(startInVolume, volume, timePassed / fadeTime * (1 - startInVolume / volume));
+            timePassed += Time.deltaTime;
+            yield return null;
         }
+
+        fadeOutAudio.Pause();
+    }
+
+    private IEnumerator FadeInAudio(AudioSource fadeInAudio, float fadeTime)
+    {
+        float timePassed = 0;
+
+        fadeInAudio.time = 0;
+        fadeInAudio.volume = 0;
+        fadeInAudio.Play();
+
+        while (timePassed < fadeTime)
+        {
+            fadeInAudio.volume = Mathf.Lerp(0, volume, timePassed / fadeTime);
+            timePassed += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private IEnumerator FadeOutAudio(AudioSource fadeOutAudio, float fadeTime)
+    {
+        float timePassed = 0;
+        float startOutVolume = fadeOutAudio.volume;
+
+        while (timePassed < fadeTime)
+        {
+            fadeOutAudio.volume = Mathf.Lerp(startOutVolume, 0, timePassed / fadeTime * (startOutVolume / volume));
+            timePassed += Time.deltaTime;
+            yield return null;
+        }
+
+        fadeOutAudio.Pause();
     }
 }

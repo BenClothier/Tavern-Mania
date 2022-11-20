@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class CustomerSpawn : MonoBehaviour
 {
-    [SerializeField] private GameObject customerPrefab;
-    [SerializeField] private GameObject magicCustomerPrefab;
+    [SerializeField] private Customer customerPrefab;
+    [SerializeField] private Customer magicCustomerPrefab;
 
-    public void SpawnCustomer()
+    public Customer SpawnCustomer()
     {
-        Instantiate(customerPrefab, transform.position, Quaternion.identity);
+        return Instantiate(customerPrefab, transform.position, Quaternion.identity);
     }
 
-    public void SpawnMagicCustomer()
+    public Customer SpawnMagicCustomer()
     {
-        Instantiate(magicCustomerPrefab, transform.position, Quaternion.identity);
+        return Instantiate(magicCustomerPrefab, transform.position, Quaternion.identity);
     }
 }
