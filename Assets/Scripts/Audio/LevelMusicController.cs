@@ -7,8 +7,8 @@ public class LevelMusicController : MonoBehaviour
 
     public AudioSource music1;
     public AudioSource music2;
-    public AudioSource music3;
-    public AudioSource music4;
+    public AudioSource victoryMusic;
+    public AudioSource lossMusic;
 
     private bool playing;
 
@@ -40,30 +40,6 @@ public class LevelMusicController : MonoBehaviour
                     Debug.LogWarning("No Music2 was assigned!");
                 }
             }
-            else if ((intensity >= 0.7f) && (intensity < 0.9f))
-            {
-                if (music3 != null && !music3.isPlaying)
-                {
-                    PauseAllMusic();
-                    music3.Play();
-                }
-                else
-                {
-                    Debug.LogWarning("No Music3 was assigned!");
-                }
-            }
-            else if (intensity >= 0.9f)
-            {
-                if (music4 != null && !music4.isPlaying)
-                {
-                    PauseAllMusic();
-                    music4.Play();
-                }
-                else
-                {
-                    Debug.LogWarning("No Music4 was assigned!");
-                }
-            }
         }
     }
 
@@ -83,7 +59,25 @@ public class LevelMusicController : MonoBehaviour
 
     public void StartMusic()
     {
+        if (victoryMusic != null)
+        {
+            victoryMusic.Pause();
+        }
+        if (lossMusic != null)
+        {
+            lossMusic.Pause();
+        }
         playing = true;
+    }
+
+    public void PlayLossMusic()
+    {
+        lossMusic.Play();
+    }
+
+    public void PlayVictoryMusic()
+    {
+        victoryMusic.Play();
     }
 
     public void PauseAllMusic()
@@ -96,14 +90,6 @@ public class LevelMusicController : MonoBehaviour
         if (music2 != null)
         {
             music2.Pause();
-        }
-        if (music3 != null)
-        {
-            music3.Pause();
-        }
-        if (music4 != null)
-        {
-            music4.Pause();
         }
     }
 }

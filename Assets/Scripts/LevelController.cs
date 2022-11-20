@@ -130,6 +130,7 @@ public class LevelController : MonoBehaviour
         if (livesRemaining < 1)
         {
             LevelMusicController.instance.music1.Pause();
+            LevelMusicController.instance.PlayLossMusic();
             GameOver = true;
             onGameOver.Invoke(new GameOverInfo(loseOrderPosition));
             Time.timeScale = 0;
@@ -147,6 +148,7 @@ public class LevelController : MonoBehaviour
         if (customerStack.Count < 1 && customerCount < 1)
         {
             LevelMusicController.instance.music1.Pause();
+            LevelMusicController.instance.PlayVictoryMusic();
             LevelComplete = true;
             onLevelComplete.Invoke();
             Time.timeScale = 0;
