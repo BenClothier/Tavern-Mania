@@ -23,7 +23,11 @@ public class PlayLevel : MonoBehaviour
         {
             difficulty.text = "Easy";
         }
-        UISounds.instance.GetComponent<AudioSource>().Play();
+
+        if (UISounds.instance)
+        {
+            UISounds.instance.GetComponent<AudioSource>().Play();
+        }
     }
 
     public void DifficultyDecrease()
@@ -40,93 +44,84 @@ public class PlayLevel : MonoBehaviour
         {
             difficulty.text = "Medium";
         }
-        UISounds.instance.GetComponent<AudioSource>().Play();
+
+        if (UISounds.instance)
+        {
+            UISounds.instance.GetComponent<AudioSource>().Play();
+        }
     }
 
 
     public void GoBack()
     {
         SceneManager.LoadScene(sceneName: "Main Menu");
-        UISounds.instance.GetComponent<AudioSource>().Play();
+
+        if (UISounds.instance)
+        {
+            UISounds.instance.GetComponent<AudioSource>().Play();
+        }
+    }
+
+    private void LoadLevel(int level)
+    {
+        SceneManager.LoadScene(sceneName: $"Level {level}");
+        MenuMusicControl.instance.GetComponent<AudioSource>().Pause();
+
+        if (UISounds.instance)
+        {
+            UISounds.instance.GetComponent<AudioSource>().Play();
+        }
+
+        LevelMusicController.instance.music1.Play();
     }
 
     public void PlayLevel1()
     {
-        SceneManager.LoadScene(sceneName: "Level 1");
-        MusicControl.instance.GetComponent<AudioSource>().Pause();
-        UISounds.instance.GetComponent<AudioSource>().Play();
-        MusicControl2.instance.music1.Play();
+        LoadLevel(1);
     }
 
     public void PlayLevel2()
     {
-        SceneManager.LoadScene(sceneName: "Level 2");
-        MusicControl.instance.GetComponent<AudioSource>().Pause();
-        UISounds.instance.GetComponent<AudioSource>().Play();
-        MusicControl2.instance.music1.Play();
+        LoadLevel(2);
     }
 
     public void PlayLevel3()
     {
-        SceneManager.LoadScene(sceneName: "Level 3");
-        MusicControl.instance.GetComponent<AudioSource>().Pause();
-        UISounds.instance.GetComponent<AudioSource>().Play();
-        MusicControl2.instance.music1.Play();
+        LoadLevel(3);
     }
 
     public void PlayLevel4()
     {
-        SceneManager.LoadScene(sceneName: "Level 4");
-        MusicControl.instance.GetComponent<AudioSource>().Pause();
-        UISounds.instance.GetComponent<AudioSource>().Play();
-        MusicControl2.instance.music1.Play();
+        LoadLevel(4);
     }
 
     public void PlayLevel5()
     {
-        SceneManager.LoadScene(sceneName: "Level 5");
-        MusicControl.instance.GetComponent<AudioSource>().Pause();
-        UISounds.instance.GetComponent<AudioSource>().Play();
-        MusicControl2.instance.music1.Play();
+        LoadLevel(5);
     }
 
     public void PlayLevel6()
     {
-        // SceneManager.LoadScene(sceneName: "Level 6");
-        //MusicControl.instance.GetComponent<AudioSource>().Pause();
-        UISounds.instance.GetComponent<AudioSource>().Play();
-        // MusicControl2.instance.music1.Play();
+        // LoadLevel(6);
     }
 
     public void PlayLevel7()
     {
-        //SceneManager.LoadScene(sceneName: "Level 7");
-        //MusicControl.instance.GetComponent<AudioSource>().Pause();
-        UISounds.instance.GetComponent<AudioSource>().Play();
-        //MusicControl2.instance.music1.Play();
+        // LoadLevel(7);
     }
 
     public void PlayLevel8()
     {
-        //SceneManager.LoadScene(sceneName: "Level 8");
-        //MusicControl.instance.GetComponent<AudioSource>().Pause();
-        UISounds.instance.GetComponent<AudioSource>().Play();
-        //MusicControl2.instance.music1.Play();
+        // LoadLevel(8);
     }
 
     public void PlayLevel9()
     {
-        //SceneManager.LoadScene(sceneName: "Level 9");
-        //MusicControl.instance.GetComponent<AudioSource>().Pause();
-        UISounds.instance.GetComponent<AudioSource>().Play();
-        //MusicControl2.instance.music1.Play();
+        // LoadLevel(9);
     }
 
     public void PlayLevel10()
     {
-        //SceneManager.LoadScene(sceneName: "Level 10");
-        //MusicControl.instance.GetComponent<AudioSource>().Pause();
-        UISounds.instance.GetComponent<AudioSource>().Play();
-        //MusicControl2.instance.music1.Play();
+        // LoadLevel(10);
     }
 }

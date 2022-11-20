@@ -7,13 +7,21 @@ public class LevelSelect : MonoBehaviour
 {
     public void PlayLevelSelect()
     {
-        UISounds.instance.GetComponent<AudioSource>().Play();
+        if (UISounds.instance)
+        {
+            UISounds.instance.GetComponent<AudioSource>().Play();
+        }
+
         SceneManager.LoadScene(sceneName: "LevelSelect");
     }
 
     public void QuitGame()
     {
-        UISounds.instance.GetComponent<AudioSource>().Play();
+        if (UISounds.instance)
+        {
+            UISounds.instance.GetComponent<AudioSource>().Play();
+        }
+
         Application.Quit();
         UnityEditor.EditorApplication.isPlaying = false;
         Debug.Log("Game is exiting");
@@ -21,7 +29,11 @@ public class LevelSelect : MonoBehaviour
 
     public void Options()
     {
-        UISounds.instance.GetComponent<AudioSource>().Play();
+        if (UISounds.instance)
+        {
+            UISounds.instance.GetComponent<AudioSource>().Play();
+        }
+
         SceneManager.LoadScene(sceneName: "Options Menu");
     }
 }

@@ -353,11 +353,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 283236937}
-  - component: {fileID: 283236936}
   - component: {fileID: 283236935}
+  - component: {fileID: 283236936}
   - component: {fileID: 283236938}
   m_Layer: 0
-  m_Name: Music Control 2
+  m_Name: LevelMusicController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -375,9 +375,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffc8c58077085442b3fe3f378af6ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
   music1: {fileID: 283236936}
   music2: {fileID: 283236938}
+  music3: {fileID: 0}
+  music4: {fileID: 0}
 --- !u!82 &283236936
 AudioSource:
   m_ObjectHideFlags: 0
@@ -788,10 +789,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 561466105}
-  - component: {fileID: 561466104}
   - component: {fileID: 561466106}
+  - component: {fileID: 561466104}
   m_Layer: 0
-  m_Name: Music Control
+  m_Name: MenuMusicController
   m_TagString: GameMusic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1063,8 +1064,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 991339569}
-  - component: {fileID: 991339568}
   - component: {fileID: 991339567}
+  - component: {fileID: 991339568}
   m_Layer: 0
   m_Name: Glass Smashing
   m_TagString: Untagged
@@ -1407,8 +1408,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1182325037}
-  - component: {fileID: 1182325036}
   - component: {fileID: 1182325035}
+  - component: {fileID: 1182325036}
   m_Layer: 0
   m_Name: Drinks Giving
   m_TagString: Untagged
@@ -2086,10 +2087,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1969186690}
+  - component: {fileID: 1969186686}
   - component: {fileID: 1969186689}
   - component: {fileID: 1969186688}
   - component: {fileID: 1969186687}
-  - component: {fileID: 1969186686}
   m_Layer: 0
   m_Name: Drink Pouring
   m_TagString: Untagged
@@ -2110,9 +2111,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds: []
-  sound1: {fileID: 0}
-  sound2: {fileID: 0}
-  sound3: {fileID: 0}
+  sound1: {fileID: 1969186689}
+  sound2: {fileID: 1969186688}
+  sound3: {fileID: 1969186687}
 --- !u!82 &1969186687
 AudioSource:
   m_ObjectHideFlags: 0

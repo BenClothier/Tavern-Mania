@@ -104,7 +104,7 @@ public class LevelController : MonoBehaviour
     {
         targetIntensity = intensityValueByCustomerCount.Evaluate(customerCount) * intensityMultiplierByLowestPatience.Evaluate(lowestPatienceVar.Value) * intensityMultiplierByPatienceDropMultiplier.Evaluate(patienceDropMultiplierVar.Value);
         Intensity = Mathf.Lerp(Intensity, targetIntensity, intensityFollowSpeed * Time.unscaledDeltaTime);
-        MusicControl2.instance.UpdateIntensity(Intensity);
+        LevelMusicController.instance.UpdateIntensity(Intensity);
 
         Debug.Log($"actual: {Intensity}, target: {targetIntensity}");
     }
