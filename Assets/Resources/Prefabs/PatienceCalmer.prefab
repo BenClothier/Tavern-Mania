@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patienceDropMultiplier: {fileID: 11400000, guid: 74e0c91f58025174c80f39f96ec7a109, type: 2}
+  onMagicStart: {fileID: 11400000, guid: 35928ab947d0f96468cdaa9cee902b57, type: 2}
+  onMagicEnd: {fileID: 11400000, guid: b4c6d1a16f1f6fe43bcc6ccbc3eb45c4, type: 2}
 --- !u!1001 &1903751225271697929
 PrefabInstance:
   m_ObjectHideFlags: 0

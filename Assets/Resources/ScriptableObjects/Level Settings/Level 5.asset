@@ -25,7 +25,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 3
+      value: 3.2637777
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -34,7 +34,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 0.5
-      value: 1
+      value: 1.5275555
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -54,6 +54,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   patienceDropMultiplier: 1
-  patienceCalmerPatienceDropMultiplier: -1.75
-  patienceCalmerDuration: 5
+  patienceCalmerPatienceDropMultiplier: -1.5
+  patienceCalmerDuration: 8
   patienceCalmerDelay: 2

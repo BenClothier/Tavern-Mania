@@ -4,6 +4,8 @@ using UnityEngine;
 public class PatienceCalmer : MonoBehaviour
 {
     [SerializeField] private FloatVariable patienceDropMultiplier;
+    [SerializeField] private EventChannel_Void onMagicStart;
+    [SerializeField] private EventChannel_Void onMagicEnd;
 
     private LevelSettings lvlSettings;
 
@@ -18,6 +20,7 @@ public class PatienceCalmer : MonoBehaviour
         if (FindObjectsOfType<PatienceCalmer>().Length <= 1)
         {
             patienceDropMultiplier.Value = lvlSettings.patienceDropMultiplier;
+            onMagicEnd.Invoke();
         }
     }
 
@@ -25,6 +28,7 @@ public class PatienceCalmer : MonoBehaviour
     {
         yield return new WaitForSeconds(lvlSettings.patienceCalmerDelay);
         patienceDropMultiplier.Value = lvlSettings.patienceCalmerPatienceDropMultiplier;
+        onMagicStart.Invoke();
         Destroy(gameObject, lvlSettings.patienceCalmerDuration);
     }
 }

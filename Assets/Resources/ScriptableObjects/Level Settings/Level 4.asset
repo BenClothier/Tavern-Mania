@@ -55,5 +55,5 @@ MonoBehaviour:
     m_RotationOrder: 4
   patienceDropMultiplier: 0
   patienceCalmerPatienceDropMultiplier: -1.5
-  patienceCalmerDuration: 6
+  patienceCalmerDuration: 8
   patienceCalmerDelay: 2

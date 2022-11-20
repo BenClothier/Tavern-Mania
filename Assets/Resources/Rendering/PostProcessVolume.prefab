@@ -65,3 +65,8 @@ MonoBehaviour:
   onGameOver: {fileID: 11400000, guid: 4cc3e9cb3319647479c0fb39a2123313, type: 2}
   vignetteGameOverIntensity: 1
   vignetteGameOverLerpSpeed: 0.5
+  onMagicStart: {fileID: 11400000, guid: 35928ab947d0f96468cdaa9cee902b57, type: 2}
+  onMagicEnd: {fileID: 11400000, guid: b4c6d1a16f1f6fe43bcc6ccbc3eb45c4, type: 2}
+  vignetteMagicColour: {r: 0.8962264, g: 0.09638655, b: 0.8577919, a: 1}
+  vignetteMagicIntensity: 0.45
+  vignetteMagicLerpSpeed: 1.5

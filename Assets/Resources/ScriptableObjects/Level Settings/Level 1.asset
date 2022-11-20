@@ -18,6 +18,7 @@ MonoBehaviour:
   maxDoubleOrders: 1
   maxTripleOrders: 1
   customerCount: 3
+  magicCustomerCount: 0
   customerSpawnPeriodCurve:
     serializedVersion: 2
     m_Curve:
@@ -43,3 +44,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   patienceDropMultiplier: 0
+  patienceCalmerPatienceDropMultiplier: -1.5
+  patienceCalmerDuration: 8
+  patienceCalmerDelay: 2
