@@ -1389,6 +1389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: {fileID: 154114014}
+  livesPerLevel: {fileID: 11400000, guid: 7a377676a4fdd124c98185a75a43fc9e, type: 2}
 --- !u!1 &522611852
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,20 +8,40 @@ public class PlayLevel : MonoBehaviour
 {
 
     [SerializeField] public TMP_Text difficulty;
+    [SerializeField] public IntVariable livesPerLevel;
+
+    private void OnEnable()
+    {
+        switch (livesPerLevel.Value)
+        {
+            case 1:
+                difficulty.text = "Hard";
+                break;
+            case 2:
+                difficulty.text = "Medium";
+                break;
+            case 3:
+                difficulty.text = "Easy";
+                break;
+        }
+    }
 
     public void DifficultyIncrease()
     {
         if (difficulty.text == "Easy")
         {
             difficulty.text = "Medium";
+            livesPerLevel.Value = 2;
         }
         else if (difficulty.text == "Medium")
         {
             difficulty.text = "Hard";
+            livesPerLevel.Value = 1;
         }
         else if (difficulty.text == "Hard")
         {
             difficulty.text = "Easy";
+            livesPerLevel.Value = 3;
         }
 
         if (UISounds.instance)
@@ -35,14 +55,17 @@ public class PlayLevel : MonoBehaviour
         if (difficulty.text == "Easy")
         {
             difficulty.text = "Hard";
+            livesPerLevel.Value = 1;
         }
         else if (difficulty.text == "Medium")
         {
             difficulty.text = "Easy";
+            livesPerLevel.Value = 3;
         }
         else if (difficulty.text == "Hard")
         {
             difficulty.text = "Medium";
+            livesPerLevel.Value = 2;
         }
 
         if (UISounds.instance)
