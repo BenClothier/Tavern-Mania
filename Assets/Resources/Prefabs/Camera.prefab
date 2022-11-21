@@ -134,3 +134,71 @@ MonoBehaviour:
   lerpSpeed: 1.5
   cameraSizeOneGameOver: 2
   onGameOver: {fileID: 11400000, guid: 4cc3e9cb3319647479c0fb39a2123313, type: 2}
+  frequencyByIntesnity:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.7
+      value: 0
+      inSlope: 0
+      outSlope: 20.55319
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.2035868
+    - serializedVersion: 3
+      time: 1
+      value: 20
+      inSlope: 21.648487
+      outSlope: 21.648487
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.15812159
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  amplitudeByIntesnity:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.7
+      value: 0
+      inSlope: 0
+      outSlope: 0.065426916
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.10056972
+    - serializedVersion: 3
+      time: 1
+      value: 0.05
+      inSlope: 0.20918168
+      outSlope: 0.20918168
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.08691211
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  shakeScale: {x: 1, y: 0.2}
+  shakePhaseOffset: {x: 0, y: 1}
