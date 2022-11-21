@@ -15,9 +15,9 @@ MonoBehaviour:
   liquidsAvailable:
   - {fileID: 11400000, guid: 6d84af076a3b85047bab052349f58da4, type: 2}
   - {fileID: 11400000, guid: e4b3613329a1fe749a68f26671b032f8, type: 2}
-  maxSingleOrders: 5
+  maxSingleOrders: 7
   maxDoubleOrders: 10
-  maxTripleOrders: 5
+  maxTripleOrders: 6
   customerCount: 20
   magicCustomerCount: 3
   customerSpawnPeriodCurve:
@@ -57,3 +57,4 @@ MonoBehaviour:
   patienceCalmerPatienceDropMultiplier: -1.5
   patienceCalmerDuration: 8
   patienceCalmerDelay: 2
+  victoryDelay: 1

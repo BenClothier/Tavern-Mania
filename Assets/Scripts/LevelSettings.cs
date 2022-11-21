@@ -22,4 +22,7 @@ public class LevelSettings : ScriptableObject
     public float patienceCalmerPatienceDropMultiplier = -0.2f;
     public float patienceCalmerDuration = 8;
     public float patienceCalmerDelay = 2;
+
+    [Header("Other")]
+    public float victoryDelay = 1;
 }

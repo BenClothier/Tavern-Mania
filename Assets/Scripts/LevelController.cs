@@ -151,9 +151,15 @@ public class LevelController : MonoBehaviour
         if (customerStack.Count < 1 && customerCount < 1)
         {
             LevelComplete = true;
-            onLevelComplete.Invoke();
-            Time.timeScale = 0;
+            StartCoroutine(VictoryDelay());
         }
+    }
+
+    private IEnumerator VictoryDelay()
+    {
+        yield return new WaitForSeconds(levelSettings.victoryDelay);
+        onLevelComplete.Invoke();
+        Time.timeScale = 0;
     }
 
     private IEnumerator SpawnCustomerRoutine()
