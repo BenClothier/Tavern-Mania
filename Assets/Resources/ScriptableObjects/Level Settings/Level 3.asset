@@ -15,45 +15,37 @@ MonoBehaviour:
   liquidsAvailable:
   - {fileID: 11400000, guid: 72370929e46f1234988a1edef1d931b8, type: 2}
   - {fileID: 11400000, guid: 6d84af076a3b85047bab052349f58da4, type: 2}
-  maxSingleOrders: 3
-  maxDoubleOrders: 6
-  maxTripleOrders: 6
-  customerCount: 15
+  maxSingleOrders: 0
+  maxDoubleOrders: 0
+  maxTripleOrders: 1
+  customerCount: 1
   magicCustomerCount: 0
   customerSpawnPeriodCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 4
-      inSlope: -0
-      outSlope: -0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.64943314
-      value: 3.5
+      value: 2
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 4
-      inSlope: -0
-      outSlope: -0
-      tangentMode: 0
+      value: 2
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  patienceDropMultiplier: 0.6
+  patienceDropMultiplier: 0
   patienceCalmerPatienceDropMultiplier: -1.5
   patienceCalmerDuration: 8
   patienceCalmerDelay: 2
+  victoryDelay: 1

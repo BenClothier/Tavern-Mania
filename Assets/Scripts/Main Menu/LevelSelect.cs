@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelect : MonoBehaviour
 {
-
-
     public void Start()
     {
         if (!MenuMusicControl.instance.GetComponent<AudioSource>().isPlaying)
@@ -14,8 +12,6 @@ public class LevelSelect : MonoBehaviour
             MenuMusicControl.instance.GetComponent<AudioSource>().Play();
         }
     }
-
-
 
     public void PlayLevelSelect()
     {
@@ -35,17 +31,9 @@ public class LevelSelect : MonoBehaviour
         }
 
         Application.Quit();
+
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-        Debug.Log("Game is exiting");
-    }
-
-    public void Options()
-    {
-        if (UISounds.instance)
-        {
-            UISounds.instance.GetComponent<AudioSource>().Play();
-        }
-
-        SceneManager.LoadScene(sceneName: "Options Menu");
+#endif
     }
 }

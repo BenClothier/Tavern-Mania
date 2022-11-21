@@ -863,7 +863,7 @@ PrefabInstance:
     - target: {fileID: -3889324556712055304, guid: 4772cef2966b67c4fa09bdfbefc59493, type: 3}
       propertyPath: levelSettings
       value: 
-      objectReference: {fileID: 11400000, guid: 318471d21a2405f44ba8471dd82d0076, type: 2}
+      objectReference: {fileID: 11400000, guid: dbf69d5849835104f95b52154d4b6378, type: 2}
     - target: {fileID: 2317278633777291811, guid: 4772cef2966b67c4fa09bdfbefc59493, type: 3}
       propertyPath: m_Name
       value: LevelController
