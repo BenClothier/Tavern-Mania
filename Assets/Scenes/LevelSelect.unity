@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 98491186}
   - component: {fileID: 98491185}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1039,7 +1039,7 @@ GameObject:
   - component: {fileID: 492780626}
   - component: {fileID: 492780625}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1174,7 +1174,7 @@ GameObject:
   - component: {fileID: 496508342}
   - component: {fileID: 496508341}
   m_Layer: 5
-  m_Name: level1Text
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1429,16 +1429,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficulty: {fileID: 154114014}
   livesPerLevel: {fileID: 11400000, guid: 7a377676a4fdd124c98185a75a43fc9e, type: 2}
-  level1Text: {fileID: 496508341}
-  level2Text: {fileID: 1482509472}
-  level3Text: {fileID: 98491185}
-  level4Text: {fileID: 787268181}
-  level5Text: {fileID: 1827184553}
-  level6Text: {fileID: 1234582878}
-  level7Text: {fileID: 492780625}
-  level8Text: {fileID: 1110920461}
-  level9Text: {fileID: 1423451006}
-  level10Text: {fileID: 1031538191}
+  levelButtons:
+  - {fileID: 496508341}
+  - {fileID: 1482509472}
+  - {fileID: 98491185}
+  - {fileID: 787268181}
+  - {fileID: 1827184553}
+  - {fileID: 1234582878}
+  - {fileID: 492780625}
+  - {fileID: 1110920461}
+  - {fileID: 1423451006}
+  - {fileID: 1031538191}
+  levels:
+  - {fileID: 11400000, guid: 6bde867abb3fadd4ea0b879997ea8c41, type: 2}
+  - {fileID: 11400000, guid: d019567a4bdc5904aace77d1b3039b65, type: 2}
+  - {fileID: 11400000, guid: dbf69d5849835104f95b52154d4b6378, type: 2}
+  - {fileID: 11400000, guid: 318471d21a2405f44ba8471dd82d0076, type: 2}
+  - {fileID: 11400000, guid: 41dfda566c35295418f8598a43692b0b, type: 2}
+  - {fileID: 11400000, guid: 730df6116cc811e4b941973b5479de94, type: 2}
+  - {fileID: 11400000, guid: 0eb19eaacd020d34291ca71fc380ddf0, type: 2}
+  - {fileID: 11400000, guid: 99b07c786ce7fdb46b00267d693cbe03, type: 2}
+  - {fileID: 11400000, guid: e6437785203479f4a85b57b53d94b086, type: 2}
+  - {fileID: 11400000, guid: 8d5445c79cda85446851e05f3050f7bb, type: 2}
+  levelCompleteColor:
+    serializedVersion: 2
+    rgba: 4287430424
 --- !u!1 &522611852
 GameObject:
   m_ObjectHideFlags: 0
@@ -1853,7 +1868,7 @@ GameObject:
   - component: {fileID: 787268182}
   - component: {fileID: 787268181}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2179,7 +2194,7 @@ GameObject:
   - component: {fileID: 1031538192}
   - component: {fileID: 1031538191}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2314,7 +2329,7 @@ GameObject:
   - component: {fileID: 1110920462}
   - component: {fileID: 1110920461}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2785,7 +2800,7 @@ GameObject:
   - component: {fileID: 1234582879}
   - component: {fileID: 1234582878}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3054,7 +3069,7 @@ GameObject:
   - component: {fileID: 1423451007}
   - component: {fileID: 1423451006}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3323,7 +3338,7 @@ GameObject:
   - component: {fileID: 1482509473}
   - component: {fileID: 1482509472}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3997,7 +4012,7 @@ GameObject:
   - component: {fileID: 1827184554}
   - component: {fileID: 1827184553}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

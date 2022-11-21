@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0327f1213a5d848a594104779d1f6d, type: 3}
   m_Name: Level 5
   m_EditorClassIdentifier: 
+  levelNumber: 5
   liquidsAvailable:
   - {fileID: 11400000, guid: 72370929e46f1234988a1edef1d931b8, type: 2}
   - {fileID: 11400000, guid: e4b3613329a1fe749a68f26671b032f8, type: 2}

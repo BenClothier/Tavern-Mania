@@ -32,8 +32,6 @@ public class GlassController_UI : MonoBehaviour
 
     private void OnDrinkModified(DrinkMix mix)
     {
-        Debug.Log("Updating glass UI.");
-
         targetFillAmount = (float)mix.LiquidCount / 3;
         targetColour = mix.Liquids.Aggregate(Color.black, (col, liq) => col + liq.colour) / mix.LiquidCount;
 

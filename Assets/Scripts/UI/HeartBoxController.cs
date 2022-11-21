@@ -17,7 +17,6 @@ public class HeartBoxController : MonoBehaviour
 
     private void OnLivesChanged(int lives)
     {
-        Debug.Log("UPDATE" + transform.childCount + livesRemaining.Value);
         for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).gameObject.SetActive(i < livesRemaining.Value);

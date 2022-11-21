@@ -10,42 +10,53 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd0327f1213a5d848a594104779d1f6d, type: 3}
-  m_Name: Level 3
+  m_Name: Level 10
   m_EditorClassIdentifier: 
-  levelNumber: 3
+  levelNumber: 10
   liquidsAvailable:
   - {fileID: 11400000, guid: 72370929e46f1234988a1edef1d931b8, type: 2}
   - {fileID: 11400000, guid: 6d84af076a3b85047bab052349f58da4, type: 2}
-  maxSingleOrders: 0
-  maxDoubleOrders: 0
-  maxTripleOrders: 1
-  customerCount: 1
-  magicCustomerCount: 0
+  - {fileID: 11400000, guid: e4b3613329a1fe749a68f26671b032f8, type: 2}
+  - {fileID: 11400000, guid: caba38f6b163ebf4b834514f84d368cf, type: 2}
+  maxSingleOrders: 15
+  maxDoubleOrders: 30
+  maxTripleOrders: 15
+  customerCount: 50
+  magicCustomerCount: 10
   customerSpawnPeriodCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 2
+      value: 4.2528033
       inSlope: 0
       outSlope: 0
-      tangentMode: 34
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 3.5056067
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 2
+      value: 5
       inSlope: 0
       outSlope: 0
-      tangentMode: 34
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  patienceDropMultiplier: 0
+  patienceDropMultiplier: 1
   patienceCalmerPatienceDropMultiplier: -1.5
   patienceCalmerDuration: 8
   patienceCalmerDelay: 2

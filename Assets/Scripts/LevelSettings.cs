@@ -6,6 +6,8 @@ public class LevelSettings : ScriptableObject
 {
     public int TotalCustomersThisLevel => customerCount + magicCustomerCount;
 
+    public int levelNumber;
+
     [Header("Orders")]
     public List<Liquid> liquidsAvailable;
     public int maxSingleOrders;

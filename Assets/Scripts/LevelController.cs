@@ -4,10 +4,11 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.UIElements;
 
 public class LevelController : MonoBehaviour
 {
+    public static int LivesPerLevel = 2;
+
     [SerializeField] private LevelSettings levelSettings;
     [SerializeField] private DrinkHeld drinkHeld;
     [SerializeField] private IntVariable livesRemaining;
@@ -25,9 +26,6 @@ public class LevelController : MonoBehaviour
     [SerializeField] private EventChannel_Void onLevelComplete;
     [SerializeField] private EventChannel_Vector2 onOrderFailed;
     [SerializeField] private EventChannel_Customer onCustomerLeave;
-
-    [Header("Game-wide Variables")]
-    [SerializeField] private IntVariable livesPerLevel;
 
     private CustomerSpawn customerSpawn;
 
@@ -60,7 +58,7 @@ public class LevelController : MonoBehaviour
         // Reset game variables for level
         drinkHeld.EmptyGlass();
         lowestPatienceVar.Value = 1000;
-        livesRemaining.Value = livesPerLevel.Value;
+        livesRemaining.Value = LivesPerLevel;
 
         // Initialise listeners
         onOrderFailed.OnEventInvocation += LoseLife;
@@ -151,7 +149,7 @@ public class LevelController : MonoBehaviour
         if (customerStack.Count < 1 && customerCount < 1)
         {
             LevelComplete = true;
-            PlayLevel.levelComplete(1);
+            PlayLevel.levelsCompleted.Add(levelSettings.levelNumber);
             StartCoroutine(VictoryDelay());
         }
     }

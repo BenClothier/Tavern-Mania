@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0327f1213a5d848a594104779d1f6d, type: 3}
   m_Name: Level 2
   m_EditorClassIdentifier: 
+  levelNumber: 2
   liquidsAvailable:
   - {fileID: 11400000, guid: 6d84af076a3b85047bab052349f58da4, type: 2}
   maxSingleOrders: 3
@@ -56,3 +57,4 @@ MonoBehaviour:
   patienceCalmerPatienceDropMultiplier: -1.5
   patienceCalmerDuration: 8
   patienceCalmerDelay: 2
+  victoryDelay: 1

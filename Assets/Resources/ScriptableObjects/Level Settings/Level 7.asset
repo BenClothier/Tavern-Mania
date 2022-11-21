@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0327f1213a5d848a594104779d1f6d, type: 3}
   m_Name: Level 7
   m_EditorClassIdentifier: 
+  levelNumber: 7
   liquidsAvailable:
   - {fileID: 11400000, guid: 72370929e46f1234988a1edef1d931b8, type: 2}
   - {fileID: 11400000, guid: 6d84af076a3b85047bab052349f58da4, type: 2}
@@ -20,13 +21,13 @@ MonoBehaviour:
   maxDoubleOrders: 10
   maxTripleOrders: 6
   customerCount: 20
-  magicCustomerCount: 3
+  magicCustomerCount: 4
   customerSpawnPeriodCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 3.9991584
+      value: 4.2468653
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -35,7 +36,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 0.5
-      value: 2.9983163
+      value: 3.4937298
       inSlope: 0
       outSlope: 0
       tangentMode: 0
