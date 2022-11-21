@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelSettings: {fileID: 0}
   drinkHeld: {fileID: 11400000, guid: 6725119e4ba28f645bcd39703efebc59, type: 2}
+  livesRemaining: {fileID: 11400000, guid: c5a8b394edc780e4796c0e808be114e1, type: 2}
   patienceDropMultiplierVar: {fileID: 11400000, guid: 74e0c91f58025174c80f39f96ec7a109, type: 2}
   lowestPatienceVar: {fileID: 11400000, guid: 14d1e7a90b841ab4ab862b758a2b082a, type: 2}
   intensityValueByAveragePatience:

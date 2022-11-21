@@ -10,6 +10,7 @@ public class LevelController : MonoBehaviour
 {
     [SerializeField] private LevelSettings levelSettings;
     [SerializeField] private DrinkHeld drinkHeld;
+    [SerializeField] private IntVariable livesRemaining;
 
     [Header("Intensity Calculation")]
     [SerializeField] private FloatVariable patienceDropMultiplierVar;
@@ -33,7 +34,6 @@ public class LevelController : MonoBehaviour
     private Stack<int> orderStack;
     private Stack<CustomerType> customerStack;
 
-    private int livesRemaining;
     private float targetIntensity;
     private int customerCount;
 
@@ -60,6 +60,7 @@ public class LevelController : MonoBehaviour
         // Reset game variables for level
         drinkHeld.EmptyGlass();
         lowestPatienceVar.Value = 1000;
+        livesRemaining.Value = livesPerLevel.Value;
 
         // Initialise listeners
         onOrderFailed.OnEventInvocation += LoseLife;
@@ -91,9 +92,6 @@ public class LevelController : MonoBehaviour
 
         customerSpawn = FindObjectOfType<CustomerSpawn>();
         patienceDropMultiplierVar.Value = levelSettings.patienceDropMultiplier;
-
-        // Set local variables
-        livesRemaining = livesPerLevel.Value;
 
         StartCoroutine(SpawnCustomerRoutine());
     }
@@ -131,9 +129,9 @@ public class LevelController : MonoBehaviour
 
     private void LoseLife(Vector2 loseOrderPosition)
     {
-        livesRemaining--;
+        livesRemaining.Value--;
 
-        if (livesRemaining < 1)
+        if (livesRemaining.Value < 1)
         {
             GameOver = true;
             onGameOver.Invoke(new GameOverInfo(loseOrderPosition));

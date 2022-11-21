@@ -15,9 +15,9 @@ MonoBehaviour:
   liquidsAvailable:
   - {fileID: 11400000, guid: 72370929e46f1234988a1edef1d931b8, type: 2}
   - {fileID: 11400000, guid: 6d84af076a3b85047bab052349f58da4, type: 2}
-  maxSingleOrders: 1
-  maxDoubleOrders: 4
-  maxTripleOrders: 5
+  maxSingleOrders: 3
+  maxDoubleOrders: 6
+  maxTripleOrders: 6
   customerCount: 15
   magicCustomerCount: 0
   customerSpawnPeriodCurve:
@@ -33,8 +33,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.6992798
-      value: 3.980133
+      time: 0.64943314
+      value: 3.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
