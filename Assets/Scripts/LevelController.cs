@@ -151,6 +151,7 @@ public class LevelController : MonoBehaviour
         if (customerStack.Count < 1 && customerCount < 1)
         {
             LevelComplete = true;
+            PlayLevel.levelComplete(1);
             StartCoroutine(VictoryDelay());
         }
     }

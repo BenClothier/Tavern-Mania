@@ -1174,7 +1174,7 @@ GameObject:
   - component: {fileID: 496508342}
   - component: {fileID: 496508341}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: level1Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1429,6 +1429,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficulty: {fileID: 154114014}
   livesPerLevel: {fileID: 11400000, guid: 7a377676a4fdd124c98185a75a43fc9e, type: 2}
+  level1Text: {fileID: 496508341}
+  level2Text: {fileID: 1482509472}
+  level3Text: {fileID: 98491185}
+  level4Text: {fileID: 787268181}
+  level5Text: {fileID: 1827184553}
+  level6Text: {fileID: 1234582878}
+  level7Text: {fileID: 492780625}
+  level8Text: {fileID: 1110920461}
+  level9Text: {fileID: 1423451006}
+  level10Text: {fileID: 1031538191}
 --- !u!1 &522611852
 GameObject:
   m_ObjectHideFlags: 0
