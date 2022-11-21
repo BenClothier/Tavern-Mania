@@ -53,7 +53,7 @@ public class LevelCompleteScreen : MonoBehaviour
 
     public void LeavePressed()
     {
-        var op = SceneManager.LoadSceneAsync("LevelSelect");
+        var op = SceneManager.LoadSceneAsync("Main Menu");
         op.completed += _ => Time.timeScale = 1;
     }
 }
