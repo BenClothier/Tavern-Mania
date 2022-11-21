@@ -7,6 +7,7 @@ public class Customer : MonoBehaviour
 {
     [SerializeField] private bool activeAI = true;
     [SerializeField] private EventChannel_Customer onCustomerLeave;
+    [SerializeField] private ParticleSystem lifeLossEffect;
 
     [Header("Patience")]
     [SerializeField] private float startPatience;
@@ -199,6 +200,7 @@ public class Customer : MonoBehaviour
         {
             CurrentState = CustomerState.Leaving;
             bar.FailOrder();
+            lifeLossEffect.Play();
 
             if (levelController.GameOver)
             {
