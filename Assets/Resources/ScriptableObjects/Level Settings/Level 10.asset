@@ -21,14 +21,14 @@ MonoBehaviour:
   maxSingleOrders: 15
   maxDoubleOrders: 30
   maxTripleOrders: 15
-  customerCount: 50
-  magicCustomerCount: 10
+  customerCount: 45
+  magicCustomerCount: 9
   customerSpawnPeriodCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 4.2528033
+      value: 4.3750434
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -36,8 +36,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.5
-      value: 3.5056067
+      time: 0.7003784
+      value: 3.999049
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -58,6 +58,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   patienceDropMultiplier: 1
   patienceCalmerPatienceDropMultiplier: -1.5
-  patienceCalmerDuration: 8
+  patienceCalmerDuration: 10
   patienceCalmerDelay: 2
   victoryDelay: 1
