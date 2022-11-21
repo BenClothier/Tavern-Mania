@@ -24,10 +24,9 @@ public class IntVariable : ScriptableObject
         {
             if (this.value != value)
             {
+                this.value = value;
                 OnVariableModified?.Invoke(value);
             }
-
-            this.value = value;
         }
     }
 }

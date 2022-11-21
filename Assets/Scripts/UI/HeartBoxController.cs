@@ -3,6 +3,7 @@ using UnityEngine;
 public class HeartBoxController : MonoBehaviour
 {
     [SerializeField] private IntVariable livesRemaining;
+    [SerializeField] private GameObject[] hearts;
 
     private void Start()
     {
@@ -17,9 +18,11 @@ public class HeartBoxController : MonoBehaviour
 
     private void OnLivesChanged(int lives)
     {
-        for (int i = 0; i < transform.childCount; i++)
+        Debug.Log("Updating Hearts: " + lives);
+
+        for (int i = 0; i < hearts.Length; i++)
         {
-            transform.GetChild(i).gameObject.SetActive(i < livesRemaining.Value);
+            hearts[i].SetActive(i < lives);
         }
     }
 }

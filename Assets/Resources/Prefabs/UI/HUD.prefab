@@ -2215,6 +2215,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   livesRemaining: {fileID: 11400000, guid: c5a8b394edc780e4796c0e808be114e1, type: 2}
+  hearts:
+  - {fileID: 6028351330805763700}
+  - {fileID: 1332244715102870373}
+  - {fileID: 3790633984077557952}
 --- !u!114 &4235884300072765383
 MonoBehaviour:
   m_ObjectHideFlags: 0
