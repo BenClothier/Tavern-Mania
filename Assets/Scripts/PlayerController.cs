@@ -38,7 +38,20 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 movementVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         Vector2 clampedMovement = Vector2.ClampMagnitude(movementVector, 1);
-        Vector2 normMovement = movementVector.normalized;
+        Vector2 normMovement;
+
+        if (movementVector.y != 0)
+        {
+            normMovement = Vector2.up * Mathf.Sign(movementVector.y);
+        }
+        else if (movementVector.x != 0)
+        {
+            normMovement = Vector2.right * Mathf.Sign(movementVector.x);
+        }
+        else
+        {
+            normMovement = Vector2.zero;
+        }
 
         if (!pouringDrink)
         {
