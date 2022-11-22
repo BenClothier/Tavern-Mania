@@ -45,11 +45,11 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 5
-      inSlope: 0
-      outSlope: 0
+      inSlope: 5.091634
+      outSlope: 5.091634
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.066389084
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
