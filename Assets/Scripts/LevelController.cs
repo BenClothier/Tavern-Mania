@@ -142,6 +142,10 @@ public class LevelController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
+        else
+        {
+            LifeLossControl.instance.GetComponent<AudioSource>().Play(); //Play Life Loss
+        }
     }
 
     private void OnCustomerLeave(Customer customer)
