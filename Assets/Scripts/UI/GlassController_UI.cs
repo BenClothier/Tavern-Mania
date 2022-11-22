@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.Rendering;
 
 public class GlassController_UI : MonoBehaviour
 {
@@ -14,8 +15,12 @@ public class GlassController_UI : MonoBehaviour
     private float targetFillAmount;
     private Color targetColour;
 
+    private Animator animator;
+    private DrinkMix newMix;
+
     private void OnEnable()
     {
+        animator = GetComponent<Animator>();
         glassFillImage.fillAmount = 0;
         glassFillImage.color = Color.clear;
         characterDrink.OnDrinkModified += OnDrinkModified;
@@ -32,13 +37,28 @@ public class GlassController_UI : MonoBehaviour
 
     private void OnDrinkModified(DrinkMix mix)
     {
-        targetFillAmount = (float)mix.LiquidCount / 3;
-        targetColour = mix.Liquids.Aggregate(Color.black, (col, liq) => col + liq.colour) / mix.LiquidCount;
+        newMix = mix;
+
+        if (mix.LiquidCount < 1)
+        {
+            animator.SetTrigger("Empty");
+        }
+        else
+        {
+            UpdateDrink();
+            animator.SetTrigger("Fill");
+        }
+    }
+
+    public void UpdateDrink()
+    {
+        targetFillAmount = (float)newMix.LiquidCount / 3;
+        targetColour = newMix.Liquids.Aggregate(Color.black, (col, liq) => col + liq.colour) / newMix.LiquidCount;
 
         // If first liquid to be added, just take it's colour
-        if (mix.LiquidCount == 1)
+        if (newMix.LiquidCount == 1)
         {
-            glassFillImage.color = mix.Liquids[0].colour;
+            glassFillImage.color = newMix.Liquids[0].colour;
         }
     }
 

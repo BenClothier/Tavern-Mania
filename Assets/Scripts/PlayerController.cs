@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private DrinkHeld drinkHeld;
     [SerializeField] private float pourCancelForgivenessTime = 0.1f;
 
+    [Header("Throw Drink")]
+    [SerializeField] private float throwGlassCooldown = 1.75f;
+
     [Header("Effects")]
     [SerializeField] private ParticleSystem throwGlassEffect;
     [SerializeField] private GameObject progressBarGroup;
@@ -25,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private GridController gridController;
 
     private bool pouringDrink;
+    private float lastThrownGlassTime;
 
     private void Awake()
     {
@@ -63,6 +67,8 @@ public class PlayerController : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
 
+        float time = Time.time;
+
         animator.SetFloat("Horizontal", clampedMovement.x);
         animator.SetFloat("Vertical", clampedMovement.y);
 
@@ -87,8 +93,9 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(PourDrinkRoutine(barrel));
         }
-        else if (Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButtonDown(1) && time >= lastThrownGlassTime + throwGlassCooldown)
         {
+            lastThrownGlassTime = time;
             drinkHeld.EmptyGlass();
             throwGlassEffect.Play();
             GlassSmashingControl.instance.GetComponent<AudioSource>().Play(); //Play Glass Smashing Sound
