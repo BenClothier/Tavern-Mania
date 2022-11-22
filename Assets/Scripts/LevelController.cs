@@ -7,8 +7,8 @@ using UnityEngine.Assertions;
 
 public class LevelController : MonoBehaviour
 {
-    public static int LivesPerLevel = 2;
-    public static float SpawnPeriodMultiplier = 1f;
+    public static int LivesPerLevel = 3;
+    public static float SpawnPeriodMultiplier = 1.2f;
 
     [SerializeField] private LevelSettings levelSettings;
     [SerializeField] private DrinkHeld drinkHeld;
