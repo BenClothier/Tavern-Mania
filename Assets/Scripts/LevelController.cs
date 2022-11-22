@@ -8,6 +8,7 @@ using UnityEngine.Assertions;
 public class LevelController : MonoBehaviour
 {
     public static int LivesPerLevel = 2;
+    public static float SpawnPeriodMultiplier = 1f;
 
     [SerializeField] private LevelSettings levelSettings;
     [SerializeField] private DrinkHeld drinkHeld;
@@ -165,7 +166,7 @@ public class LevelController : MonoBehaviour
     {
         while (!GameOver && !LevelComplete && customerStack.Count > 0)
         {
-            yield return new WaitForSeconds(levelSettings.customerSpawnPeriodCurve.Evaluate(1 - ((float)customerStack.Count / levelSettings.TotalCustomersThisLevel)));
+            yield return new WaitForSeconds(levelSettings.customerSpawnPeriodCurve.Evaluate(1 - ((float)customerStack.Count / levelSettings.TotalCustomersThisLevel)) * SpawnPeriodMultiplier);
 
             if (customerStack.Pop() == CustomerType.Normal)
             {

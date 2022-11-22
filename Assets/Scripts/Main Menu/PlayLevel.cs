@@ -48,16 +48,19 @@ public class PlayLevel : MonoBehaviour
         {
             difficulty.text = "Medium";
             LevelController.LivesPerLevel = 2;
+            LevelController.SpawnPeriodMultiplier = 1f;
         }
         else if (difficulty.text == "Medium")
         {
             difficulty.text = "Hard";
             LevelController.LivesPerLevel = 1;
+            LevelController.SpawnPeriodMultiplier = 0.85f;
         }
         else if (difficulty.text == "Hard")
         {
             difficulty.text = "Easy";
             LevelController.LivesPerLevel = 3;
+            LevelController.SpawnPeriodMultiplier = 1.2f;
         }
 
         if (UISounds.instance)
@@ -72,16 +75,19 @@ public class PlayLevel : MonoBehaviour
         {
             difficulty.text = "Hard";
             LevelController.LivesPerLevel = 1;
+            LevelController.SpawnPeriodMultiplier = 0.9f;
         }
         else if (difficulty.text == "Medium")
         {
             difficulty.text = "Easy";
             LevelController.LivesPerLevel = 3;
+            LevelController.SpawnPeriodMultiplier = 1.15f;
         }
         else if (difficulty.text == "Hard")
         {
             difficulty.text = "Medium";
             LevelController.LivesPerLevel = 2;
+            LevelController.SpawnPeriodMultiplier = 1f;
         }
 
         if (UISounds.instance)
