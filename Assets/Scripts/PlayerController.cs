@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [Header("Pouring Drink / Serving")]
     [SerializeField] private float pourDrinkTime = 1;
     [SerializeField] private DrinkHeld drinkHeld;
+    [SerializeField] private float pourCancelForgivenessTime = 0.1f;
 
     [Header("Effects")]
     [SerializeField] private ParticleSystem throwGlassEffect;
@@ -132,7 +133,7 @@ public class PlayerController : MonoBehaviour
         pouringDrink = false;
 
         // Success or cancelled
-        if (timeLeft <= 0)
+        if (timeLeft <= pourCancelForgivenessTime)
         {
             // Take liquid
             if (barrel.TakeMeasurementOfContents(out Liquid liquid))

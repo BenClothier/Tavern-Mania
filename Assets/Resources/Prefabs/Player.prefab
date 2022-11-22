@@ -225,10 +225,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 5
-  interactKey: 111
   pourDrinkTime: 1
   drinkHeld: {fileID: 11400000, guid: 6725119e4ba28f645bcd39703efebc59, type: 2}
-  discardDrinkKey: 112
+  pourCancelForgivenessTime: 0.08
   throwGlassEffect: {fileID: 8359260584798162675}
   progressBarGroup: {fileID: 2791205441466598073}
   progressBarFill: {fileID: 4357676655666082824}
