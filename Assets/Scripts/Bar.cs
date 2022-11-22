@@ -11,6 +11,8 @@ public class Bar : MonoBehaviour
     [Space]
     [SerializeField] private EventChannel_Void onOrderSatisfied;
     [SerializeField] private EventChannel_Vector2 onOrderFailed;
+    [Space]
+    [SerializeField] private ParticleSystem incorrectEffect;
 
     public bool IsVacant { get; private set; } = true;
 
@@ -25,10 +27,17 @@ public class Bar : MonoBehaviour
 
     public bool ServeDrink(DrinkMix mix)
     {
-        if (Order.HasValue && Order.Value.Equals(mix))
+        if (Order.HasValue)
         {
-            OnOrderSatisfied();
-            return true;
+            if (Order.Value.Equals(mix))
+            {
+                OnOrderSatisfied();
+                return true;
+            }
+            else
+            {
+                incorrectEffect.Play();
+            }
         }
 
         return false;
