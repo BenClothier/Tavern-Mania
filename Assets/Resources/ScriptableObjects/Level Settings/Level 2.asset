@@ -48,4 +48,4 @@ MonoBehaviour:
   patienceCalmerPatienceDropMultiplier: -1.5
   patienceCalmerDuration: 8
   patienceCalmerDelay: 2
-  victoryDelay: 1
+  victoryDelay: 2.5
