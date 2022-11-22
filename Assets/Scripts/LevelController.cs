@@ -56,6 +56,9 @@ public class LevelController : MonoBehaviour
     {
         var rnd = new System.Random();
 
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         // Reset game variables for level
         drinkHeld.EmptyGlass();
         lowestPatienceVar.Value = 1000;
@@ -135,6 +138,9 @@ public class LevelController : MonoBehaviour
             GameOver = true;
             onGameOver.Invoke(new GameOverInfo(loseOrderPosition));
             Time.timeScale = 0;
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
@@ -160,6 +166,9 @@ public class LevelController : MonoBehaviour
         yield return new WaitForSeconds(levelSettings.victoryDelay);
         onLevelComplete.Invoke();
         Time.timeScale = 0;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private IEnumerator SpawnCustomerRoutine()

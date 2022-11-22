@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -8,13 +9,9 @@ public class PlayerController : MonoBehaviour
     [Header("General")]
     [SerializeField] private float movementSpeed = 1;
 
-    [Header("Pouring Drink")]
-    [SerializeField] private KeyCode interactKey = KeyCode.O;
+    [Header("Pouring Drink / Serving")]
     [SerializeField] private float pourDrinkTime = 1;
     [SerializeField] private DrinkHeld drinkHeld;
-
-    [Header("Throwing Glass")]
-    [SerializeField] private KeyCode discardDrinkKey = KeyCode.P;
 
     [Header("Effects")]
     [SerializeField] private ParticleSystem throwGlassEffect;
@@ -59,8 +56,8 @@ public class PlayerController : MonoBehaviour
         gridController.HighlightTile(highlightPos);
 
         Debug.DrawRay(transform.position, normMovement, Color.green);
-        
-        if (Input.GetKeyDown(KeyCode.O) && gridController.GetTileGameObject(highlightPos, out GameObject tileObject) && tileObject.TryGetComponent(out Bar bar))
+
+        if (Input.GetMouseButtonDown(0) && gridController.GetTileGameObject(highlightPos, out GameObject tileObject) && tileObject.TryGetComponent(out Bar bar))
         {
             if (bar.ServeDrink(drinkHeld.DrinkMix))
             {
@@ -72,11 +69,11 @@ public class PlayerController : MonoBehaviour
                 Debug.LogWarning("Could not serve held drink.");
             }
         }
-        else if (!pouringDrink && !drinkHeld.DrinkMix.IsFull && Input.GetKey(KeyCode.O) && gridController.GetTileGameObject(highlightPos, out GameObject tile) && tile.TryGetComponent(out Barrel barrel))
+        else if (!pouringDrink && !drinkHeld.DrinkMix.IsFull && Input.GetMouseButton(0) && gridController.GetTileGameObject(highlightPos, out GameObject tile) && tile.TryGetComponent(out Barrel barrel))
         {
             StartCoroutine(PourDrinkRoutine(barrel));
         }
-        else if (Input.GetKeyDown(discardDrinkKey))
+        else if (Input.GetMouseButtonDown(1))
         {
             drinkHeld.EmptyGlass();
             throwGlassEffect.Play();
@@ -109,7 +106,7 @@ public class PlayerController : MonoBehaviour
         // Routine
         float timeLeft = pourDrinkTime;
 
-        while (Input.GetKey(KeyCode.O) && timeLeft > 0)
+        while (Input.GetMouseButton(0) && timeLeft > 0)
         {
             yield return null;
             timeLeft -= Time.deltaTime;
