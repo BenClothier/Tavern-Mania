@@ -70,3 +70,7 @@ MonoBehaviour:
   vignetteMagicColour: {r: 0.8962264, g: 0.09638655, b: 0.8577919, a: 1}
   vignetteMagicIntensity: 0.45
   vignetteMagicLerpSpeed: 1.5
+  onOrderFailed: {fileID: 11400000, guid: d7e23e3a0fde0a1418f48fa82be6b7bd, type: 2}
+  vignetteFailColour: {r: 0.8301887, g: 0, b: 0, a: 1}
+  vignetteLifeLossIntensity: 0.45
+  vignetteLifeLossDuration: 1.5

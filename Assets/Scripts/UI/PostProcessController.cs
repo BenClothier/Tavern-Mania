@@ -17,6 +17,12 @@ public class PostProcessController : MonoBehaviour
     [SerializeField] private float vignetteMagicIntensity = 0.3f;
     [SerializeField] private float vignetteMagicLerpSpeed = 1.5f;
 
+    [Header("Life Loss Effect")]
+    [SerializeField] private EventChannel_Vector2 onOrderFailed;
+    [SerializeField] private Color vignetteFailColour;
+    [SerializeField] private float vignetteLifeLossIntensity = 0.3f;
+    [SerializeField] private float vignetteLifeLossDuration = 1.5f;
+
     private Volume volume;
     private Vignette vignette;
 
@@ -24,10 +30,18 @@ public class PostProcessController : MonoBehaviour
     private float defaultVignetteIntensity;
     private bool magicOn;
 
+    private Coroutine gameOverRoutine;
+    private Coroutine magicRoutine;
+    private Coroutine lifeLossRoutine;
+
+    private LevelController levelController;
+
     private void Awake()
     {
         volume = GetComponent<Volume>();
         volume.profile.TryGet(out vignette);
+
+        levelController = FindObjectOfType<LevelController>();
 
         defaultVignetteColour = vignette.color.value;
         defaultVignetteIntensity = vignette.intensity.value;
@@ -35,6 +49,7 @@ public class PostProcessController : MonoBehaviour
         onGameOver.OnEventInvocation += OnGameOver;
         onMagicStart.OnEventInvocation += OnMagicStart;
         onMagicEnd.OnEventInvocation += OnMagicEnd;
+        onOrderFailed.OnEventInvocation += OnLifeLoss;
     }
 
     private void OnDisable()
@@ -42,6 +57,7 @@ public class PostProcessController : MonoBehaviour
         onGameOver.OnEventInvocation -= OnGameOver;
         onMagicStart.OnEventInvocation -= OnMagicStart;
         onMagicEnd.OnEventInvocation -= OnMagicEnd;
+        onOrderFailed.OnEventInvocation -= OnLifeLoss;
     }
 
     private void OnGameOver(GameOverInfo info)
@@ -57,12 +73,18 @@ public class PostProcessController : MonoBehaviour
             vignette.intensity.value = Mathf.Lerp(vignette.intensity.GetValue<float>(), vignetteGameOverIntensity, vignetteGameOverLerpSpeed * Time.unscaledDeltaTime);
             yield return null;
         }
+
+        gameOverRoutine = null;
     }
 
     private void OnMagicStart()
     {
-        magicOn = true;
-        StartCoroutine(LerpMagicVignette());
+        if (gameOverRoutine == null)
+        {
+            StopAllCoroutines();
+            magicOn = true;
+            magicRoutine = StartCoroutine(LerpMagicVignette());
+        }
     }
 
     private void OnMagicEnd()
@@ -87,5 +109,41 @@ public class PostProcessController : MonoBehaviour
 
             yield return null;
         }
+
+        magicRoutine = null;
+    }
+
+    private void OnLifeLoss(Vector2 vec2)
+    {
+        if (!levelController.GameOver && gameOverRoutine == null && magicRoutine == null)
+        {
+            StopAllCoroutines();
+            lifeLossRoutine = StartCoroutine(LerpLifeLossVignette());
+        }
+    }
+
+    private IEnumerator LerpLifeLossVignette()
+    {
+        float timePassed = 0;
+
+        while (enabled && timePassed <= vignetteLifeLossDuration)
+        {
+            if (timePassed / vignetteLifeLossDuration < 0.5f)
+            {
+                vignette.intensity.value = Mathf.Lerp(vignette.intensity.GetValue<float>(), vignetteLifeLossIntensity, timePassed / (vignetteLifeLossDuration / 2));
+                vignette.color.value = Color.Lerp(vignette.color.GetValue<Color>(), vignetteFailColour, timePassed / (vignetteLifeLossDuration / 2));
+            }
+            else
+            {
+                vignette.intensity.value = Mathf.Lerp(vignette.intensity.GetValue<float>(), defaultVignetteIntensity, timePassed / (vignetteLifeLossDuration / 2) - 1);
+                vignette.color.value = Color.Lerp(vignette.color.GetValue<Color>(), defaultVignetteColour, timePassed / (vignetteLifeLossDuration / 2) - 1);
+            }
+
+            timePassed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        lifeLossRoutine = null;
     }
 }
