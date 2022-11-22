@@ -18,8 +18,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e4b3613329a1fe749a68f26671b032f8, type: 2}
   - {fileID: 11400000, guid: caba38f6b163ebf4b834514f84d368cf, type: 2}
   maxSingleOrders: 12
-  maxDoubleOrders: 36
-  maxTripleOrders: 12
+  maxDoubleOrders: 20
+  maxTripleOrders: 10
   customerCount: 35
   magicCustomerCount: 7
   customerSpawnPeriodCurve:
@@ -27,7 +27,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 4.3266406
+      value: 4.291884
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 0.5
-      value: 3.6532803
+      value: 3.583767
       inSlope: 0
       outSlope: 0
       tangentMode: 0
